@@ -6,14 +6,10 @@
  **************************************************************/
 #include "chifoumi.h"
 
-#include <cstdlib>
-#include <ctime>
-
 
     ///* ---- PARTIE MOD�LE ---------------------------
 
-Chifoumi::Chifoumi()
-{
+Chifoumi::Chifoumi() {
     //ctor
     // partie mod�le
 }
@@ -59,33 +55,58 @@ int randMinMax(int min, int max){
    return rand()%(max-min) + min;
 }
 
-Chifoumi::UnCoup Chifoumi::genererUnCoup()
-{
-    UnCoup valeurGeneree;   // valeur � retourner
-
-	valeurGeneree = rien;
+Chifoumi::UnCoup Chifoumi::genererUnCoup() {
+    Chifoumi::UnCoup valeurGeneree;  // valeur � retourner
+    unsigned int nbAleatoire;
+    nbAleatoire = rand() % (4 - 1) + 1;
+    switch (nbAleatoire) {
+        case 1:
+            valeurGeneree = Chifoumi::pierre;
+            break;
+        case 2:
+            valeurGeneree = Chifoumi::papier;
+            break;
+        case 3:
+            valeurGeneree = Chifoumi::ciseau;
+            break;
+        default:
+            break;
+    }
     return valeurGeneree;
 }
 
         /// Setters
-
 void Chifoumi::setCoupJoueur(UnCoup p_coup) {
+    this->coupJoueur=p_coup;
 }
 
 void Chifoumi::setCoupMachine(UnCoup p_coup) {
+    this->coupMachine=p_coup;
 }
 
 void Chifoumi::setScoreJoueur(unsigned int p_score) {
+    this->scoreJoueur=p_score;
 }
 
 void Chifoumi::setScoreMachine(unsigned int p_score) {
+    this->scoreMachine=p_score;
 }
 
 void Chifoumi::majScores(char p_gagnant) {
+    if(p_gagnant=='J'){
+        this->scoreJoueur++;
+    }
+    else if (p_gagnant=='M'){
+        this->scoreMachine++;
+    }
 }
 
 void Chifoumi::initScores() {
+    this->scoreJoueur=0;
+    this->scoreMachine=0;
 }
 
 void Chifoumi::initCoups() {
+    this->coupJoueur=rien;
+    this->coupMachine=rien;
 }

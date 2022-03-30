@@ -8,10 +8,6 @@
 #include <iostream>
 
 using namespace std;
-// #include <conio.h>
-
-#include <cstdlib>
-#include <ctime>
 
 #include "chifoumi.h"
 

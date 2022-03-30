@@ -7,6 +7,9 @@
 #ifndef CHIFOUMI_H
 #define CHIFOUMI_H
 #include <iostream>
+#include <conio.h>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
