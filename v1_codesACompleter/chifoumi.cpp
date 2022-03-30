@@ -2,7 +2,7 @@
  * Name:      chifoumiMain.h
  * Author:    P.Dagorret ()
  * Created:   2021-05-10
- * Description : classe métier (= modèle) Chifoumi-v1
+ * Description : classe mï¿½tier (= modï¿½le) Chifoumi-v1
  **************************************************************/
 #include "chifoumi.h"
 
@@ -10,12 +10,12 @@
 #include <ctime>
 
 
-    ///* ---- PARTIE MODèLE ---------------------------
+    ///* ---- PARTIE MODï¿½LE ---------------------------
 
 Chifoumi::Chifoumi()
 {
     //ctor
-    // partie modèle
+    // partie modï¿½le
 }
 
 Chifoumi::~Chifoumi()
@@ -26,45 +26,42 @@ Chifoumi::~Chifoumi()
         /// Getters
 
 Chifoumi::UnCoup Chifoumi::getCoupJoueur() {
-	return rien;
+	return this->coupJoueur;
 }
 
 Chifoumi::UnCoup Chifoumi::getCoupMachine() {
-    return rien;
+    return this->coupMachine;
 }
 
 unsigned int Chifoumi::getScoreJoueur() {
-    return 0;
+    return this->scoreJoueur;
 }
 
 unsigned int Chifoumi::getScoreMachine() {
-    return 0;
+    return this->scoreMachine;
 }
 
-char Chifoumi::determinerGagnant()
-{
-    char gagnantARetourner;
-
-    // avant de commencer : match nul
-    gagnantARetourner = 'N';
-
-    // il sera modifié dans l'un des cas suivants
-
-
-    return gagnantARetourner;
+char Chifoumi::determinerGagnant() {
+    if (scoreJoueur < scoreMachine) {
+        return 'M';
+    } else if (scoreJoueur > scoreMachine) {
+        return 'J';
+    } else {
+        return 'N';
+    }
 }
 
-         ///* Méthodes utilitaires du Modèle
+         ///* Mï¿½thodes utilitaires du Modï¿½le
 
 int randMinMax(int min, int max){
-    /* pré-condition : min<max ;
-       Le nbre aléatoire est compris entre [min, max[ */
+    /* prï¿½-condition : min<max ;
+       Le nbre alï¿½atoire est compris entre [min, max[ */
    return rand()%(max-min) + min;
 }
 
 Chifoumi::UnCoup Chifoumi::genererUnCoup()
 {
-    UnCoup valeurGeneree;   // valeur à retourner
+    UnCoup valeurGeneree;   // valeur ï¿½ retourner
 
 	valeurGeneree = rien;
     return valeurGeneree;
