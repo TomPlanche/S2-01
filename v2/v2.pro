@@ -10,7 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     chifoumi.cpp \
-    main.cpp \
+    main.cpp \ 
     gamewindow.cpp
 
 HEADERS += \
