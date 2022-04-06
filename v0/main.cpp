@@ -1,10 +1,3 @@
-/***************************************************************
- * Name:      main.cpp
- * Author:    P.Dagorret ()
- * Created:   2021-05-10
- * Description : Programme TEST de la classe m�tier Chifoumi-v1
- **************************************************************/
-
 #include <iostream>
 
 using namespace std;
