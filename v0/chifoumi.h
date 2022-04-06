@@ -4,7 +4,7 @@
 #include <conio.h>
 #include <cstdlib>
 #include <ctime>
-
+ 
 using namespace std;
 
 class Chifoumi {

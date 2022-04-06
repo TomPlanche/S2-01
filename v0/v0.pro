@@ -6,6 +6,6 @@ CONFIG -= qt
 SOURCES += \
 		chifoumi.cpp \
         main.cpp
-
+ 
 HEADERS += \
 		chifoumi.h \

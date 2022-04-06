@@ -1,6 +1,6 @@
 #include "chifoumi.h"
 
-
+ 
     ///* ---- PARTIE MOD�LE ---------------------------
 
 Chifoumi::Chifoumi() {
