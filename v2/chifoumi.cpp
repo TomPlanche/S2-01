@@ -8,6 +8,7 @@ Chifoumi::Chifoumi() {
     // partie mod�le
 }
 
+
 Chifoumi::~Chifoumi()
 {
     //dtor
