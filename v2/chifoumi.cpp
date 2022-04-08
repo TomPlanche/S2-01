@@ -4,7 +4,8 @@
     ///* ---- PARTIE MOD�LE ---------------------------
 
 Chifoumi::Chifoumi() {
-    //ctor
+    initCoups();
+    initScores();
     // partie mod�le
 }
 
