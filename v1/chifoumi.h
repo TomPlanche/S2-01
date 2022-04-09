@@ -23,7 +23,6 @@ public:
 
 public slots:
     void lancerPartie();
-    void aProposDe();
     void jouePierre();
     void jouePapier();
     void joueCiseau();

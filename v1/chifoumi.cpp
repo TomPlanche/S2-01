@@ -18,10 +18,6 @@ Chifoumi::Chifoumi(QWidget *parent)
     connect(ui->pierre,SIGNAL(clicked()),this,SLOT(jouePierre()));
     connect(ui->papier,SIGNAL(clicked()),this,SLOT(jouePapier()));
     connect(ui->ciseau,SIGNAL(clicked()),this,SLOT(joueCiseau()));
-
-    //Menus
-    //connect(ui->actionQuitter, SIGNAL(triggered()), this, SLOT(close()));
-    //connect(ui->actionA_propos_de, SIGNAL(triggered()), this, SLOT(aProposDe()));
 }
 
 void Chifoumi::lancerPartie()
@@ -69,19 +65,6 @@ void Chifoumi::joueCiseau()
     setCoupMachine(genererUnCoup());
     majScores(determinerGagnant());
     majAffichage();
-}
-
-
-
-
-void Chifoumi::aProposDe()
-{
-    QMessageBox *msgBox = new QMessageBox;
-    msgBox->setIcon(QMessageBox::Information);
-    msgBox->setStandardButtons(QMessageBox::Ok);
-    msgBox->setWindowTitle("A propos de l'application");
-    msgBox->setText("Tom, Angel, Matis -> gros bgs");
-    msgBox->exec();
 }
 
 Chifoumi::~Chifoumi()
