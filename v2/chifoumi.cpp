@@ -1,21 +1,101 @@
 #include "chifoumi.h"
+#include "ui_chifoumi.h"
 
+Chifoumi::Chifoumi(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::Chifoumi)
+{
+    ui->setupUi(this);
 
-    ///* ---- PARTIE MOD�LE ---------------------------
+    //Préparation Boutons
+    ui->pierre->setDisabled(true);
+    ui->papier->setDisabled(true);
+    ui->ciseau->setDisabled(true);
 
-Chifoumi::Chifoumi() {
-    initCoups();
-    initScores();
-    // partie mod�le
+    //Connexion
+    //Boutons
+    connect(ui->bNewPartie,SIGNAL(clicked()),this,SLOT(lancerPartie()));
+    connect(ui->pierre,SIGNAL(clicked()),this,SLOT(jouePierre()));
+    connect(ui->papier,SIGNAL(clicked()),this,SLOT(jouePapier()));
+    connect(ui->ciseau,SIGNAL(clicked()),this,SLOT(joueCiseau()));
 }
 
+void Chifoumi::lancerPartie()
+{
+    ui->pierre->setEnabled(true);
+    ui->papier->setEnabled(true);
+    ui->ciseau->setEnabled(true);
+
+    //On remet à 0 le jeu
+    initCoups();
+    initScores();
+    majAffichage();
+
+    //On met les labels en bleu
+    ui->lJoueur->setStyleSheet("color: blue;");
+    ui->lMachine->setStyleSheet("color: blue;");
+    ui->scoreJoueur->setStyleSheet("color: blue;");
+    ui->scoreMachine->setStyleSheet("color: blue;");
+}
+
+void Chifoumi::jouePierre()
+{
+    //Maj du coupJoueur
+    setCoupJoueur(Chifoumi::pierre);
+    //Génération aléatoire du coupMachine
+    setCoupMachine(genererUnCoup());
+    //On determine le gagnant de la manche afin de mettre à jour le score
+    majScores(determinerGagnant());
+    //Maj de l'affichage
+    majAffichage();
+}
+
+void Chifoumi::jouePapier()
+{
+    setCoupJoueur(Chifoumi::papier);
+    setCoupMachine(genererUnCoup());
+    majScores(determinerGagnant());
+    majAffichage();
+
+}
+
+void Chifoumi::joueCiseau()
+{
+    setCoupJoueur(Chifoumi::ciseau);
+    setCoupMachine(genererUnCoup());
+    majScores(determinerGagnant());
+    majAffichage();
+}
 
 Chifoumi::~Chifoumi()
 {
-    //dtor
+    delete ui;
 }
 
-        /// Getters
+void Chifoumi::majAffichage()
+{
+    //Maj des labels scoreJoueur et scoreMachine
+    ui->scoreJoueur->setText(QString::number(getScoreJoueur()));
+    ui->scoreMachine->setText(QString::number(getScoreMachine()));
+
+    //Maj image label coupJoueur
+    switch (getCoupJoueur())
+    {
+        case pierre: ui->coupJoueur->setPixmap(QPixmap(":/chifoumi/images/pierre_115.png"));  break;
+        case ciseau: ui->coupJoueur->setPixmap(QPixmap(":/chifoumi/images/ciseau_115.png")); break;
+        case papier: ui->coupJoueur->setPixmap(QPixmap(":/chifoumi/images/papier_115.png"));break;
+        case rien: ui->coupJoueur->setPixmap(QPixmap(":/chifoumi/images/rien_115.png")); break;
+    }
+
+    //Maj image label coupMachine
+    switch (getCoupMachine())
+    {
+        case pierre: ui->coupMachine->setPixmap(QPixmap(":/chifoumi/images/pierre_115.png")); break;
+        case ciseau: ui->coupMachine->setPixmap(QPixmap(":/chifoumi/images/ciseau_115.png")); break;
+        case papier: ui->coupMachine->setPixmap(QPixmap(":/chifoumi/images/papier_115.png")); break;
+        case rien: ui->coupMachine->setPixmap(QPixmap(":/chifoumi/images/rien_115.png")); break;
+    }
+}
 
 Chifoumi::UnCoup Chifoumi::getCoupJoueur() {
     return this->coupJoueur;
