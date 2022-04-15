@@ -1,27 +1,27 @@
 #include "chifoumipresentation.h"
 
-chifoumiPresentation::chifoumiPresentation(chifoumiModele *m, QObject *parent):
+ChifoumiPresentation::ChifoumiPresentation(ChifoumiModele *m, QObject *parent):
     QObject{parent}, _leModele(m)
 {
 
 }
 
-chifoumiModele *chifoumiPresentation::getModele()
+ChifoumiModele *ChifoumiPresentation::getModele()
 {
     return _leModele;
 }
 
-chifoumiVue *chifoumiPresentation::getVue()
+ChifoumiVue *ChifoumiPresentation::getVue()
 {
     return _laVue;
 }
 
-void chifoumiPresentation::setModele(chifoumiModele *m)
+void ChifoumiPresentation::setModele(ChifoumiModele *m)
 {
     _leModele = m;
 }
 
-void chifoumiPresentation::setVue(chifoumiVue *v)
+void ChifoumiPresentation::setVue(ChifoumiVue *v)
 {
     _laVue = v;
 }

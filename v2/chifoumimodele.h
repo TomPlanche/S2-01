@@ -2,22 +2,23 @@
 #define CHIFOUMIMODELE_H
 
 #include <QObject>
-#include "chifoumi.h"
 
-class chifoumiModele : public QObject
+class ChifoumiModele : public QObject
 {
     Q_OBJECT
 public:
-    explicit chifoumiModele(Chifoumi::UnCoup coupJoueur=Chifoumi::rien,
-                            Chifoumi::UnCoup coupMachine=Chifoumi::rien,
+    enum UnCoup {pierre, papier, ciseau, rien };
+
+    explicit ChifoumiModele(UnCoup coupJoueur=rien,
+                            UnCoup coupMachine=rien,
                             QObject *parent = nullptr);
 
-    Chifoumi::UnCoup getCoupJoueur();
-    Chifoumi::UnCoup getCoupMachine();
+    UnCoup getCoupJoueur();
+    UnCoup getCoupMachine();
 
 private:
-    Chifoumi::UnCoup _coupJoueur;
-    Chifoumi::UnCoup _coupMachine;
+    UnCoup _coupJoueur;
+    UnCoup _coupMachine;
 };
 
 #endif // CHIFOUMIMODELE_H

@@ -3,22 +3,22 @@
 
 #include <QObject>
 #include "chifoumimodele.h"
+#include "chifoumivue.h"
 
-class chifoumiVue;
-class chifoumiPresentation : public QObject
+class ChifoumiPresentation : public QObject
 {
     Q_OBJECT
 public:
-    explicit chifoumiPresentation(chifoumiModele *m, QObject *parent = nullptr);
+    explicit ChifoumiPresentation(ChifoumiModele *m, QObject *parent = nullptr);
 
-    chifoumiModele* getModele();
-    chifoumiVue* getVue();
-    void setModele(chifoumiModele *m);
-    void setVue(chifoumiVue *v);
+    ChifoumiModele* getModele();
+    ChifoumiVue* getVue();
+    void setModele(ChifoumiModele *m);
+    void setVue(ChifoumiVue *v);
 
 private:
-    chifoumiModele *_leModele;
-    chifoumiVue *_laVue;
+    ChifoumiModele *_leModele;
+    ChifoumiVue *_laVue;
 };
 
 #endif // CHIFOUMIPRESENTATION_H
