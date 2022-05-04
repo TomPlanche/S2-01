@@ -126,4 +126,44 @@ char ChifoumiModele::determinerGagnant() {
     return gagnantARetourner;
 }
 
+ChifoumiModele::UnCoup ChifoumiModele::genererUnCoup() {
+    ChifoumiModele::UnCoup valeurGeneree;  // valeur � retourner
+    unsigned int nbAleatoire;
+    nbAleatoire = rand() % (4 - 1) + 1;
+    switch (nbAleatoire) {
+        case 1:
+            valeurGeneree = ChifoumiModele::pierre;
+            break;
+        case 2:
+            valeurGeneree = ChifoumiModele::papier;
+            break;
+        case 3:
+            valeurGeneree = ChifoumiModele::ciseau;
+            break;
+    }
+    return valeurGeneree;
+}
+
+void ChifoumiModele::lancerPartie() {
+    /*
+    ui->pierre->setEnabled(true);
+    ui->papier->setEnabled(true);
+    ui->ciseau->setEnabled(true);
+*/
+    //On remet à 0 le jeu
+    initCoups();
+    initScores();
+    /*
+    majAffichage();
+    */
+/*
+    //On met les labels en bleu
+    ui->lJoueur->setStyleSheet("color: blue;");
+    ui->lMachine->setStyleSheet("color: blue;");
+    ui->scoreJoueur->setStyleSheet("color: blue;");
+    ui->scoreMachine->setStyleSheet("color: blue;");
+    */
+}
+
+
 

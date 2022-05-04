@@ -4,7 +4,8 @@
 #include <QObject>
 
 #include "chifoumimodele.h"
-#include "chifoumivue.h"
+
+class ChifoumiVue;
 
 class ChifoumiPresentation : public QObject
 {
@@ -18,13 +19,9 @@ public:
     void setModele(ChifoumiModele *m);
     void setVue(ChifoumiVue *v);
 
-
-
-private:
-    ChifoumiModele *_leModele;
-    ChifoumiVue *_laVue;
-
-
+    void jouePierre();
+    void jouePapier();
+    void joueCiseau();
 
 public slots:
     void demandeNouvellePartie();
@@ -32,6 +29,10 @@ public slots:
     void demandePierre();
     void demandeCiseaux();
     void demandePapier();
+
+private:
+    ChifoumiModele *_leModele;
+    ChifoumiVue *_laVue;
 };
 
 #endif // CHIFOUMIPRESENTATION_H
