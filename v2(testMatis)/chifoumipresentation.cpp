@@ -33,6 +33,7 @@ void ChifoumiPresentation::lancerPartie() {
     case ChifoumiPresentation::etatInitial:
         _laVue->majTableauScores();
         _laVue->majBoutons();
+        _laVue->setEtat(ChifoumiPresentation::partieEnCours);
         break;
     case ChifoumiPresentation::partieEnCours:
         //On remet à 0 le jeu

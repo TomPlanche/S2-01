@@ -12,6 +12,9 @@ ChifoumiVue::ChifoumiVue(QWidget *parent)
     ui->papier->setDisabled(true);
     ui->ciseau->setDisabled(true);
 
+    //Iitialisation de l'état
+    setEtat(ChifoumiPresentation::etatInitial);
+
     //Connexion
     //Boutons
     connect(ui->bNewPartie,SIGNAL(clicked()),this,SLOT(demandeNouvellePartie()));
