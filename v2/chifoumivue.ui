@@ -381,7 +381,7 @@
             <item>
              <widget class="QPushButton" name="bNewPartie">
               <property name="text">
-               <string>Nouvelle Partie</string>
+               <string>Jouer</string>
               </property>
              </widget>
             </item>

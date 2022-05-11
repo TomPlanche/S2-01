@@ -13,26 +13,26 @@ class ChifoumiPresentation : public QObject
 public:
     explicit ChifoumiPresentation(ChifoumiModele *m, QObject *parent = nullptr);
 
+    enum UnEtat {etatInitial,partieEnCours};
+
     ChifoumiModele *getModele();
     ChifoumiVue *getVue();
+    ChifoumiPresentation::UnEtat getEtat();
 
     void setModele(ChifoumiModele *m);
     void setVue(ChifoumiVue *v);
+    void setEtat(ChifoumiPresentation::UnEtat e);
 
+public slots:
+    void lancerPartie();
     void jouePierre();
     void jouePapier();
     void joueCiseau();
 
-public slots:
-    void demandeNouvellePartie();
-
-    void demandePierre();
-    void demandeCiseaux();
-    void demandePapier();
-
 private:
     ChifoumiModele *_leModele;
     ChifoumiVue *_laVue;
+    UnEtat _etat;
 };
 
 #endif // CHIFOUMIPRESENTATION_H

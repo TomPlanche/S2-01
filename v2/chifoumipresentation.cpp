@@ -1,11 +1,17 @@
 #include "chifoumipresentation.h"
+#include "chifoumivue.h"
 #include "ui_chifoumivue.h"
+
+/* ********** CONSTRUCTEUR ********** */
 
 ChifoumiPresentation::ChifoumiPresentation(ChifoumiModele *m, QObject *parent):
     QObject{parent}, _leModele(m)
 {
 
 }
+
+
+/* ********** GETTERS ********** */
 
 ChifoumiModele *ChifoumiPresentation::getModele()
 {
@@ -17,6 +23,14 @@ ChifoumiVue *ChifoumiPresentation::getVue()
     return this->_laVue;
 }
 
+ChifoumiPresentation::UnEtat ChifoumiPresentation::getEtat()
+{
+    return _etat;
+}
+
+
+/* ********** SETTERS ********** */
+
 void ChifoumiPresentation::setModele(ChifoumiModele *m)
 {
     this->_leModele = m;
@@ -27,31 +41,54 @@ void ChifoumiPresentation::setVue(ChifoumiVue *v)
     this->_laVue = v;
 }
 
+void ChifoumiPresentation::setEtat(ChifoumiPresentation::UnEtat e)
+{
+    this->_etat = e;
+}
+
+
+/* ********** SLOTS ********** */
+
+void ChifoumiPresentation::lancerPartie() {
+    switch (_etat) {
+    case ChifoumiPresentation::etatInitial:
+        setEtat(ChifoumiPresentation::partieEnCours);
+        _laVue->activerBoutons();
+        _laVue->activerTableauScores();
+        break;
+    case ChifoumiPresentation::partieEnCours:
+        _leModele->initCoups();
+        _leModele->initScores();
+        break;
+    default: break;
+    }
+    _laVue->majInterface(_etat);
+}
+
 void ChifoumiPresentation::jouePierre()
 {
     //Maj du coupJoueur
-    ChifoumiPresentation::getModele->setCoupJoueur(ChifoumiModele::pierre);
+    _leModele->setCoupJoueur(ChifoumiModele::pierre);
     //Génération aléatoire du coupMachine
-    setCoupMachine(genererUnCoup());
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
     //On determine le gagnant de la manche afin de mettre à jour le score
-    majScores(determinerGagnant());
+    _leModele->majScores(getModele()->determinerGagnant());
     //Maj de l'affichage
-    _laPresentation->majAffichage();
+    _laVue->majInterface(_etat);
 }
 
 void ChifoumiPresentation::jouePapier()
 {
-    setCoupJoueur(ChifoumiModele::papier);
-    setCoupMachine(genererUnCoup());
-    majScores(determinerGagnant());
-    _laPresentation->getVue()->majAffichage();
-
+    _leModele->setCoupJoueur(ChifoumiModele::papier);
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
+    _leModele->majScores(_leModele->determinerGagnant());
+    _laVue->majInterface(_etat);
 }
 
 void ChifoumiPresentation::joueCiseau()
 {
-    setCoupJoueur(ChifoumiModele::ciseau);
-    setCoupMachine(genererUnCoup());
-    majScores(determinerGagnant());
-    _laPresentation->getVue()->majAffichage();
+    _leModele->setCoupJoueur(ChifoumiModele::ciseau);
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
+    _leModele->majScores(_leModele->determinerGagnant());
+    _laVue->majInterface(_etat);
 }

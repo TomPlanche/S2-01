@@ -1,8 +1,12 @@
 #include "chifoumimodele.h"
 
+/* ********** CONSTRUCTEUR ********** */
+
 ChifoumiModele::ChifoumiModele(UnCoup coupJoueur,UnCoup coupMachine,QObject *parent):
     QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine)
 {
+    initCoups();
+    initScores();
 }
 
 
@@ -126,6 +130,12 @@ char ChifoumiModele::determinerGagnant() {
     return gagnantARetourner;
 }
 
+int randMinMax(int min, int max){
+    /* pré-condition : min<max ;
+       Le nbre aléatoire est compris entre [min, max[ */
+   return rand()%(max-min) + min;
+}
+
 ChifoumiModele::UnCoup ChifoumiModele::genererUnCoup() {
     ChifoumiModele::UnCoup valeurGeneree;  // valeur � retourner
     unsigned int nbAleatoire;
@@ -144,26 +154,7 @@ ChifoumiModele::UnCoup ChifoumiModele::genererUnCoup() {
     return valeurGeneree;
 }
 
-void ChifoumiModele::lancerPartie() {
-    /*
-    ui->pierre->setEnabled(true);
-    ui->papier->setEnabled(true);
-    ui->ciseau->setEnabled(true);
-*/
-    //On remet à 0 le jeu
-    initCoups();
-    initScores();
-    /*
-    majAffichage();
-    */
-/*
-    //On met les labels en bleu
-    ui->lJoueur->setStyleSheet("color: blue;");
-    ui->lMachine->setStyleSheet("color: blue;");
-    ui->scoreJoueur->setStyleSheet("color: blue;");
-    ui->scoreMachine->setStyleSheet("color: blue;");
-    */
-}
+
 
 
 

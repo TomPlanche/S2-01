@@ -6,11 +6,12 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    ChifoumiVue w;
-    ChifoumiModele m;
-    ChifoumiPresentation p;
-    //p.setModele(m);
-    //p.setVue(w);
+
+    ChifoumiModele *m = new ChifoumiModele();
+    ChifoumiPresentation *p = new ChifoumiPresentation(m);
+    ChifoumiVue w(p);
+    p->setVue(&w);
+    p->getVue()->majInterface(p->getEtat());
     w.show();
     return a.exec();
 }
