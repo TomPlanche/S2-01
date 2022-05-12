@@ -13,9 +13,7 @@ ChifoumiVue::ChifoumiVue(ChifoumiPresentation *p,QWidget *parent)
     ui->setupUi(this);
 
     //Préparation Boutons
-    ui->pierre->setDisabled(true);
-    ui->papier->setDisabled(true);
-    ui->ciseau->setDisabled(true);
+    ui->gbBoutonsCoups->setDisabled(true);
 
     //Connexion
     //Boutons
@@ -113,9 +111,7 @@ void ChifoumiVue::activerBoutons()
     switch (_laPresentation->getEtat()) {
     case ChifoumiPresentation::etatInitial:break;
     case ChifoumiPresentation::partieEnCours:
-        ui->pierre->setEnabled(true);
-        ui->papier->setEnabled(true);
-        ui->ciseau->setEnabled(true);
+        ui->gbBoutonsCoups->setEnabled(true);
         ui->bNewPartie->setText("Nouvelle Partie");
         break;
     case ChifoumiPresentation::finDePartie:break;
@@ -129,9 +125,7 @@ void ChifoumiVue::desactiverBoutons()
     case ChifoumiPresentation::etatInitial:break;
     case ChifoumiPresentation::partieEnCours:break;
     case ChifoumiPresentation::finDePartie:
-        ui->pierre->setEnabled(false);
-        ui->papier->setEnabled(false);
-        ui->ciseau->setEnabled(false);
+        ui->gbBoutonsCoups->setDisabled(true);
         ui->bNewPartie->setText("Nouvelle Partie");
         break;
     default:break;
