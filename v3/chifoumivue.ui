@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>625</width>
+    <width>677</width>
     <height>528</height>
    </rect>
   </property>
@@ -16,9 +16,9 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_5">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QVBoxLayout" name="vAllChifoumi">
       <item>
-       <layout class="QGridLayout" name="gridLayout">
+       <layout class="QGridLayout" name="gridPartieHaute">
         <item row="0" column="1">
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -227,7 +227,7 @@
        </spacer>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="bbbbbbbbbbb">
+       <layout class="QHBoxLayout" name="hPartieBasse">
         <property name="topMargin">
          <number>0</number>
         </property>
@@ -248,7 +248,7 @@
          </spacer>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="aaaaaaaaaa">
+         <layout class="QVBoxLayout" name="vInterfaceJoueur">
           <property name="spacing">
            <number>9</number>
           </property>
@@ -259,7 +259,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QGroupBox" name="groupBox">
+           <widget class="QGroupBox" name="gbBoutonsCoups">
             <property name="minimumSize">
              <size>
               <width>509</width>
@@ -364,7 +364,7 @@
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
+           <layout class="QHBoxLayout" name="hBoutNewPartie">
             <item>
              <spacer name="horizontalSpacer">
               <property name="orientation">
@@ -416,7 +416,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>625</width>
+     <width>677</width>
      <height>21</height>
     </rect>
    </property>
