@@ -88,6 +88,9 @@ void ChifoumiVue::majInterface(ChifoumiPresentation::UnEtat e)
         desactiverBoutons();
 
         QString gagnant;
+        int scoreMax;
+
+        scoreMax = _laPresentation->getModele()->getScorePourGagner();
 
         if(_laPresentation->getModele()->determinerGagnant() == 'J'){
             gagnant = "Le Joueur";
@@ -100,7 +103,7 @@ void ChifoumiVue::majInterface(ChifoumiPresentation::UnEtat e)
         //msgBox->setIcon(QMessageBox::Information);
         msgBox->setStandardButtons(QMessageBox::Ok);
         msgBox->setWindowTitle("Fin de partie");
-        msgBox->setText(QString("Bravo ").append(QVariant(gagnant).toString()).append("! Vous gagnez en 5 points."));
+        msgBox->setText(QString("Bravo ").append(QVariant(gagnant).toString()).append("! Vous gagnez en ").append(QVariant(scoreMax).toString()).append(" points."));
         msgBox->exec();
         break;
     }

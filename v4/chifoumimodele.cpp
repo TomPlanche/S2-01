@@ -3,7 +3,7 @@
 /* ********** CONSTRUCTEUR ********** */
 
 ChifoumiModele::ChifoumiModele(UnCoup coupJoueur,UnCoup coupMachine,QObject *parent):
-    QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine)
+    QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine),_scorePourGagner(5)
 {
     initCoups();
     initScores();
@@ -25,6 +25,11 @@ unsigned int ChifoumiModele::getScoreJoueur() {
 
 unsigned int ChifoumiModele::getScoreMachine() {
     return this->_scoreMachine;
+}
+
+int ChifoumiModele::getScorePourGagner()
+{
+    return this->_scorePourGagner;
 }
 
 

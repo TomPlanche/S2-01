@@ -31,6 +31,9 @@ public:
     unsigned int getScoreMachine();
     /* retourne le score de la machine */
 
+    int getScorePourGagner();
+    /* retourne le score nécessaire pour gagner */
+
     char determinerGagnant();
     /* détermine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
     en fonction du dernier coup joué par chacun d'eux */
@@ -78,7 +81,7 @@ private:
     ChifoumiModele::UnCoup _coupJoueur;          // dernier coup joué par le joueur
     ChifoumiModele::UnCoup _coupMachine;         // dernier coup joué par la machine
 
-
+    int _scorePourGagner;
 };
 
 #endif // CHIFOUMIMODELE_H
