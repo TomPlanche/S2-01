@@ -21,7 +21,6 @@ Ce projet a été réalisé par :
             <th align="center">Version</th>
             <th align="center">Description fonctionnelle</th>
             <th align="center">Références figures</th>
-            <th>Avancement</th>
         </tr>
     </thead>
     <tbody>
@@ -29,20 +28,17 @@ Ce projet a été réalisé par :
             <td align="center">v0</td>
             <td align="left">Sources C++ de la classe Chifoumi dans un projet Non Qt</td>
             <td align="center"></td>
-            <td align="center"><strong>FAIT</strong></td>
         </tr>
         <tr>
             <td align="center">v1</td>
             <td align="left">Version décrite dans le paragraphe §1 précédent.<br> La barre de menus est inactive.</td>
             <td align="center"></td>
-            <td align="center"><strong>FAIT</strong></td>
         </tr>
         <tr>
             <td align="center">v2</td>
             <td align="left">L’application offre les mêmes fonctionnalités que la version v1.<br>
             Le code source est structuré selon le modèle MVC. <strong>--></strong> amélioration de l’organisation du code</td>
             <td align="center"></td>
-            <td align="center"><strong></strong></td>
         </tr>
         <tr>
             <td align="center">v3</td>
@@ -55,18 +51,15 @@ Ce projet a été réalisé par :
             </td>
             <td align="center">
             Figure 5, Figure 6, Figure 7</td>
-            <td align="center"><strong></strong></td>
         </tr><tr>
             <td align="center">v4</td>
             <td align="left">Le jeu se joue en X points, 5 par défaut. Le premier joueur dont le score a atteint ce maximum a gagné.</td>
             <td align="center">Figure 8, Figure 9</td>
-            <td align="center"><strong></strong></td>
         </tr>
         <tr>
             <td align="center">v5</td>
             <td align="left">Le jeu se joue en temps limité, 30 secondes par défaut. A l’issue du temps imparti, il y a un joueur gagnant, ou bien il y a égalité entre les 2 joueurs.</td>
             <td align="center">De Figure 10 à Figure 14</td>
-            <td align="center"><strong></strong></td>
         </tr>
         <tr>
             <td align="center">v6</td>
@@ -77,14 +70,12 @@ Ce projet a été réalisé par :
             Une fois la partie commencée il n'est plus possible de modifier les paramètres.
             </td>
             <td align="center"></td>
-            <td align="center"><strong></strong></td>
         </tr>
         <tr>
             <td align="center">v7</td>
             <td align="left">v6+<br>
             Le nom du joueur est enregistré dans une base de données.</td>
             <td align="center"></td>
-            <td align="center"><strong></strong></td>
         </tr>
         <tr>
             <td align="center">v8</td>
@@ -92,13 +83,11 @@ Ce projet a été réalisé par :
             A la fin de la partie, le système enregistre dans la base de données le résultat de la partie :<br>
             Horodatage, nomJoueurHumain, scoreJoueurHumain, joueurMachine, scoreJoueurMachine</td>
             <td align="center"></td>
-            <td align="center"><strong></strong></td>
         </tr>
         <tr>
             <td align="center">v9</td>
             <td align="left">Le menu <a color="blue">Fichier >> Réinitialiser...</a> permet de vider la base de données. Une boîte de message indique que l’action s’est bien terminée.</td>
             <td align="center"></td>
-            <td align="center"><strong></strong></td>
         </tr>
         <tr>
             <td align="center">v10</td>
@@ -112,7 +101,6 @@ Ce projet a été réalisé par :
             - [Horodatage optionnel], scoreJoueurHumain, joueurMachine, scoreJoueurMachine<br>
             -...</td>
             <td align="center"></td>
-            <td align="center"><strong></strong></td>
         </tr>
     </tbody>
 </table>
