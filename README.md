@@ -49,17 +49,16 @@ Ce projet a été réalisé par :
             - la date de création<br>
             - les auteurs<br>
             </td>
-            <td align="center">
-            Figure 5, Figure 6, Figure 7</td>
+            <td align="center">Figures 5, 6, 7</td>
         </tr><tr>
             <td align="center">v4</td>
             <td align="left">Le jeu se joue en X points, 5 par défaut. Le premier joueur dont le score a atteint ce maximum a gagné.</td>
-            <td align="center">Figure 8, Figure 9</td>
+            <td align="center">Figures 8, 9</td>
         </tr>
         <tr>
             <td align="center">v5</td>
             <td align="left">Le jeu se joue en temps limité, 30 secondes par défaut. A l’issue du temps imparti, il y a un joueur gagnant, ou bien il y a égalité entre les 2 joueurs.</td>
-            <td align="center">De Figure 10 à Figure 14</td>
+            <td align="center">Figures 10, 11, 12, 13, 14</td>
         </tr>
         <tr>
             <td align="center">v6</td>
@@ -105,3 +104,6 @@ Ce projet a été réalisé par :
     </tbody>
 </table>
 
+## Captures d'écran du jeu
+
+(à faire)
