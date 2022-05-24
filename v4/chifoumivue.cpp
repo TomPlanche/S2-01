@@ -85,54 +85,21 @@ void ChifoumiVue::majInterface(ChifoumiPresentation::UnEtat e)
         ui->scoreJoueur->setText(QString::number(_laPresentation->getModele()->getScoreJoueur()));
         ui->scoreMachine->setText(QString::number(_laPresentation->getModele()->getScoreMachine()));
 
-        desactiverBoutons();
-
-        QString gagnant;
-        int scoreMax;
-
-        scoreMax = _laPresentation->getModele()->getScorePourGagner();
-
-        if(_laPresentation->getModele()->determinerGagnant() == 'J'){
-            gagnant = "Le Joueur";
-        }
-        else{
-            gagnant = "La Machine";
-        }
-
-        QMessageBox *msgBox = new QMessageBox;
-        //msgBox->setIcon(QMessageBox::Information);
-        msgBox->setStandardButtons(QMessageBox::Ok);
-        msgBox->setWindowTitle("Fin de partie");
-        msgBox->setText(QString("Bravo ").append(QVariant(gagnant).toString()).append("! Vous gagnez en ").append(QVariant(scoreMax).toString()).append(" points."));
-        msgBox->exec();
         break;
-    }
+   }
+
 }
 
 void ChifoumiVue::activerBoutons()
-{
-    switch (_laPresentation->getEtat()) {
-    case ChifoumiPresentation::etatInitial:break;
-    case ChifoumiPresentation::partieEnCours:
-        ui->gbBoutonsCoups->setEnabled(true);
-        ui->bNewPartie->setText("Nouvelle Partie");
-        break;
-    case ChifoumiPresentation::finDePartie:break;
-    default:break;
-    }
+{ 
+    ui->gbBoutonsCoups->setEnabled(true);
+    ui->bNewPartie->setText("Nouvelle Partie");
 }
 
 void ChifoumiVue::desactiverBoutons()
 {
-    switch (_laPresentation->getEtat()) {
-    case ChifoumiPresentation::etatInitial:break;
-    case ChifoumiPresentation::partieEnCours:break;
-    case ChifoumiPresentation::finDePartie:
-        ui->gbBoutonsCoups->setDisabled(true);
-        ui->bNewPartie->setText("Nouvelle Partie");
-        break;
-    default:break;
-   }
+    ui->gbBoutonsCoups->setDisabled(true);
+    ui->bNewPartie->setText("Nouvelle Partie");
 }
 
 void ChifoumiVue::activerTableauScores()

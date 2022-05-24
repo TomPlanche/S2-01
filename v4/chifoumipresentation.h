@@ -22,6 +22,7 @@ public:
     void setModele(ChifoumiModele *m);
     void setVue(ChifoumiVue *v);
     void setEtat(ChifoumiPresentation::UnEtat e);
+    void finPartieScore();
 
 public slots:
     void lancerPartie();
