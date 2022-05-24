@@ -46,6 +46,31 @@ void ChifoumiPresentation::setEtat(ChifoumiPresentation::UnEtat e)
     this->_etat = e;
 }
 
+void ChifoumiPresentation::finPartieScore()
+{
+    _leModele->majScores(getModele()->determinerGagnant());
+    _laVue->desactiverBoutons();
+
+    QString gagnant;
+    int scoreMax;
+
+    scoreMax = getModele()->getScorePourGagner();
+
+    if(getModele()->determinerGagnant() == 'J'){
+        gagnant = "Le Joueur";
+    }
+    else{
+        gagnant = "La Machine";
+    }
+
+    QMessageBox *msgBox = new QMessageBox;
+    //msgBox->setIcon(QMessageBox::Information);
+    msgBox->setStandardButtons(QMessageBox::Ok);
+    msgBox->setWindowTitle("Fin de partie");
+    msgBox->setText(QString("Bravo ").append(QVariant(gagnant).toString()).append("! Vous gagnez en ").append(QVariant(scoreMax).toString()).append(" points."));
+    msgBox->exec();
+}
+
 
 /* ********** SLOTS ********** */
 
@@ -73,40 +98,73 @@ void ChifoumiPresentation::lancerPartie() {
 
 void ChifoumiPresentation::jouePierre()
 {
-    //Maj du coupJoueur
-    _leModele->setCoupJoueur(ChifoumiModele::pierre);
-    //Génération aléatoire du coupMachine
-    _leModele->setCoupMachine(_leModele->genererUnCoup());
-    //On determine le gagnant de la manche afin de mettre à jour le score
-    _leModele->majScores(getModele()->determinerGagnant());
-    //Check si le score max est atteint
-    if (_leModele->maxScore()){
-        setEtat(ChifoumiPresentation::finDePartie);
+    switch(_etat){
+        case ChifoumiPresentation::etatInitial:
+            break;
+        case ChifoumiPresentation::partieEnCours:
+            //Maj du coupJoueur
+            _leModele->setCoupJoueur(ChifoumiModele::pierre);
+            //Génération aléatoire du coupMachine
+            _leModele->setCoupMachine(_leModele->genererUnCoup());
+            //On determine le gagnant de la manche afin de mettre à jour le score
+            _leModele->majScores(getModele()->determinerGagnant());
+            //Maj de l'affichage
+            _laVue->majInterface(_etat);
+            //Check si le score max est atteint
+            if (_leModele->maxScore()){
+                setEtat(ChifoumiPresentation::finDePartie);
+                finPartieScore();
+            }
+            break;
+        case ChifoumiPresentation::finDePartie:
+            break;
+        default: break;
+
     }
-    //Maj de l'affichage
-    _laVue->majInterface(_etat);
 }
 
 void ChifoumiPresentation::jouePapier()
 {
-    _leModele->setCoupJoueur(ChifoumiModele::papier);
-    _leModele->setCoupMachine(_leModele->genererUnCoup());
-    _leModele->majScores(_leModele->determinerGagnant());
-    if (_leModele->maxScore()){
-        setEtat(ChifoumiPresentation::finDePartie);
+    switch(_etat){
+        case ChifoumiPresentation::etatInitial:
+            break;
+        case ChifoumiPresentation::partieEnCours:
+            _leModele->setCoupJoueur(ChifoumiModele::papier);
+            _leModele->setCoupMachine(_leModele->genererUnCoup());
+            _leModele->majScores(_leModele->determinerGagnant());
+            _laVue->majInterface(_etat);
+            if (_leModele->maxScore()){
+                setEtat(ChifoumiPresentation::finDePartie);
+                finPartieScore();
+            }
+            break;
+        case ChifoumiPresentation::finDePartie:
+            break;
+        default : break;
     }
-    _laVue->majInterface(_etat);
+
 }
 
 void ChifoumiPresentation::joueCiseau()
 {
-    _leModele->setCoupJoueur(ChifoumiModele::ciseau);
-    _leModele->setCoupMachine(_leModele->genererUnCoup());
-    _leModele->majScores(_leModele->determinerGagnant());
-    if (_leModele->maxScore()){
-        setEtat(ChifoumiPresentation::finDePartie);
+    switch(_etat){
+        case ChifoumiPresentation::etatInitial:
+            break;
+        case ChifoumiPresentation::partieEnCours:
+            _leModele->setCoupJoueur(ChifoumiModele::ciseau);
+            _leModele->setCoupMachine(_leModele->genererUnCoup());
+            _leModele->majScores(_leModele->determinerGagnant());
+            _laVue->majInterface(_etat);
+            if (_leModele->maxScore()){
+                setEtat(ChifoumiPresentation::finDePartie);
+                finPartieScore();
+            }
+            break;
+        case ChifoumiPresentation::finDePartie:
+            break;
+        default : break;
     }
-    _laVue->majInterface(_etat);
+
 }
 
 void ChifoumiPresentation::aProposDe()
@@ -118,3 +176,4 @@ void ChifoumiPresentation::aProposDe()
     msgBox->setText("Tom, Angel, Matis -> gros bgs \nVersion 4 du Chifoumi (11/05/2022) ");
     msgBox->exec();
 }
+
