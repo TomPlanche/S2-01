@@ -84,8 +84,8 @@ void ChifoumiVue::majInterface(ChifoumiPresentation::UnEtat e)
         desactiverBoutons();
         updaterTimerLabel(0);
 
-
-
+    case ChifoumiPresentation::partieEnPause:
+        desactiverBoutons();
 
 
         break;
