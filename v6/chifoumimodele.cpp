@@ -3,7 +3,7 @@
 /* ********** CONSTRUCTEUR ********** */
 
 ChifoumiModele::ChifoumiModele(UnCoup coupJoueur,UnCoup coupMachine,QObject *parent):
-    QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine),_scorePourGagner(5)
+    QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine), _temps(5)
 {
     initCoups();
     initScores();
@@ -32,6 +32,14 @@ int ChifoumiModele::getScorePourGagner()
     return this->_scorePourGagner;
 }
 
+uint16_t ChifoumiModele::getTemps()
+{
+    return _temps;
+}
+
+void ChifoumiModele::setTemps(uint16_t temps) {
+    _temps = temps;
+}
 
 /// Setters
 void ChifoumiModele::setCoupJoueur(ChifoumiModele::UnCoup p_coup) {
@@ -77,7 +85,6 @@ bool ChifoumiModele::maxScore()
    }
     return finPartie;
 }
-
 
 char ChifoumiModele::determinerGagnant() {
     char gagnantARetourner;
@@ -151,7 +158,7 @@ int randMinMax(int min, int max){
 }
 
 ChifoumiModele::UnCoup ChifoumiModele::genererUnCoup() {
-    ChifoumiModele::UnCoup valeurGeneree = ChifoumiModele::rien;  // valeur � retourner
+    ChifoumiModele::UnCoup valeurGeneree;  // valeur � retourner
     unsigned int nbAleatoire;
     nbAleatoire = rand() % (4 - 1) + 1;
     switch (nbAleatoire) {

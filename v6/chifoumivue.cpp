@@ -1,7 +1,5 @@
 #include "chifoumivue.h"
 #include "ui_chifoumivue.h"
-#include <QMessageBox>
-#include <QVariant>
 
 /* ********** CONSTRUCTEUR ********** */
 
@@ -14,13 +12,15 @@ ChifoumiVue::ChifoumiVue(ChifoumiPresentation *p,QWidget *parent)
 
     //Préparation Boutons
     ui->gbBoutonsCoups->setDisabled(true);
+    ui->boutonPause->setDisabled(true);
 
     //Connexion
     //Boutons
-    connect(ui->bNewPartie,SIGNAL(clicked()),p,SLOT(lancerPartie()));
-    connect(ui->pierre,SIGNAL(clicked()),p,SLOT(jouePierre()));
-    connect(ui->papier,SIGNAL(clicked()),p,SLOT(jouePapier()));
-    connect(ui->ciseau,SIGNAL(clicked()),p,SLOT(joueCiseau()));
+    connect(ui->bNewPartie, SIGNAL(clicked()), p, SLOT(lancerPartie()));
+    connect(ui->boutonPause, SIGNAL(clicked()), p, SLOT(pauseButtonClicked()));
+    connect(ui->pierre, SIGNAL(clicked()), p, SLOT(jouePierre()));
+    connect(ui->papier, SIGNAL(clicked()), p, SLOT(jouePapier()));
+    connect(ui->ciseau, SIGNAL(clicked()) ,p, SLOT(joueCiseau()));
 
     //Menus
     connect(ui->actionQuitter, SIGNAL(triggered()), this, SLOT(close()));
@@ -90,13 +90,14 @@ void ChifoumiVue::majInterface(ChifoumiPresentation::UnEtat e)
             case ChifoumiModele::papier: ui->coupMachine->setPixmap(QPixmap(":/chifoumi/images/papier_115.png")); break;
             case ChifoumiModele::rien: ui->coupMachine->setPixmap(QPixmap(":/chifoumi/images/rien_115.png")); break;
         }
-
         break;
+    case ChifoumiPresentation::partieEnPause: break;
     case ChifoumiPresentation::finDePartie:
         ui->scoreJoueur->setText(QString::number(_laPresentation->getModele()->getScoreJoueur()));
         ui->scoreMachine->setText(QString::number(_laPresentation->getModele()->getScoreMachine()));
 
         desactiverBoutons();
+        updaterTimerLabel(0);
 
         QString gagnant;
         int scoreMax;
@@ -111,7 +112,6 @@ void ChifoumiVue::majInterface(ChifoumiPresentation::UnEtat e)
         }
 
         QMessageBox *msgBox = new QMessageBox;
-        //msgBox->setIcon(QMessageBox::Information);
         msgBox->setStandardButtons(QMessageBox::Ok);
         msgBox->setWindowTitle("Fin de partie");
         msgBox->setText(QString("Bravo ").append(QVariant(gagnant).toString()).append("! Vous gagnez en ").append(QVariant(scoreMax).toString()).append(" points."));
@@ -127,7 +127,9 @@ void ChifoumiVue::activerBoutons()
     case ChifoumiPresentation::partieEnCours:
         ui->gbBoutonsCoups->setEnabled(true);
         ui->bNewPartie->setText("Nouvelle Partie");
+        ui->boutonPause->setEnabled(true);
         break;
+    case ChifoumiPresentation::partieEnPause:break;
     case ChifoumiPresentation::finDePartie:break;
     default:break;
     }
@@ -138,10 +140,12 @@ void ChifoumiVue::desactiverBoutons()
     switch (_laPresentation->getEtat()) {
     case ChifoumiPresentation::etatInitial:break;
     case ChifoumiPresentation::partieEnCours:break;
-    case ChifoumiPresentation::finDePartie:
+    case ChifoumiPresentation::partieEnPause:
         ui->gbBoutonsCoups->setDisabled(true);
-        ui->bNewPartie->setText("Nouvelle Partie");
+        ui->bNewPartie->setText("Reprendre");
+        ui->boutonPause->setDisabled(true);
         break;
+    case ChifoumiPresentation::finDePartie:break;
     default:break;
    }
 }
@@ -156,7 +160,14 @@ void ChifoumiVue::activerTableauScores()
         ui->scoreJoueur->setStyleSheet("color: blue;");
         ui->scoreMachine->setStyleSheet("color: blue;");
         break;
+    case ChifoumiPresentation::partieEnPause:break;
     case ChifoumiPresentation::finDePartie:break;
     default:break;
     }
 }
+
+void ChifoumiVue::updaterTimerLabel(int temps)
+{
+    ui->labelTemps->setText(QString("Temps Restant : ").append(QString::number(temps)).append("s."));
+}
+

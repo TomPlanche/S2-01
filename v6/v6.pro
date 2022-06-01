@@ -9,21 +9,21 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dialogparametres.cpp \
     chifoumimodele.cpp \
     chifoumipresentation.cpp \
     chifoumivue.cpp \
-    dialogparametres.cpp \
     main.cpp
 
 HEADERS += \
+    dialogparametres.h \
     chifoumimodele.h \
     chifoumipresentation.h \
-    chifoumivue.h \
-    dialogparametres.h
+    chifoumivue.h
 
 FORMS += \
-    chifoumivue.ui \
-    dialogparametres.ui
+    dialogparametres.ui \
+    chifoumivue.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

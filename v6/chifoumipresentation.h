@@ -2,6 +2,7 @@
 #define CHIFOUMIPRESENTATION_H
 
 #include <QObject>
+#include <QTimer>
 
 #include "chifoumimodele.h"
 
@@ -13,7 +14,7 @@ class ChifoumiPresentation : public QObject
 public:
     explicit ChifoumiPresentation(ChifoumiModele *m, QObject *parent = nullptr);
 
-    enum UnEtat {etatInitial,partieEnCours,finDePartie};
+    enum UnEtat {etatInitial, partieEnCours, partieEnPause, finDePartie};
 
     ChifoumiModele *getModele();
     ChifoumiVue *getVue();
@@ -25,16 +26,33 @@ public:
 
 public slots:
     void lancerPartie();
+
     void jouePierre();
     void jouePapier();
     void joueCiseau();
     void aProposDe();
     void parametrer();
 
+    void updaterTimer();
+    void pauseTimer();
+    void reprendreTimer();
+
+
+    void pauseButtonClicked();
+
 private:
     ChifoumiModele *_leModele;
     ChifoumiVue *_laVue;
     UnEtat _etat;
+
+
+    QTimer *timer;
+    const uint16_t DELAIS = 1000;
+    const uint16_t TEMPS = _leModele->getTemps();
+
+
+    void finPartieTemps();
+
 };
 
 #endif // CHIFOUMIPRESENTATION_H

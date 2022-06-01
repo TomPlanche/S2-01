@@ -34,6 +34,10 @@ public:
     int getScorePourGagner();
     /* retourne le score nécessaire pour gagner */
 
+    uint16_t getTemps();
+
+    void setTemps(uint16_t);
+
     char determinerGagnant();
     /* détermine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
     en fonction du dernier coup joué par chacun d'eux */
@@ -69,9 +73,10 @@ public:
     NON indispensable */
 
     bool maxScore();
-    /*Regarde si le score max a ete atteint, affiche une boite de dialogue
-     et desactive les boutons de jeu
-     */
+    /* Regarde si le score max a ete atteint, affiche une boite de dialogue
+    et desactive les boutons de jeu */
+
+
 
 private:
 
@@ -81,7 +86,9 @@ private:
     ChifoumiModele::UnCoup _coupJoueur;          // dernier coup joué par le joueur
     ChifoumiModele::UnCoup _coupMachine;         // dernier coup joué par la machine
 
+    uint16_t _temps;
     int _scorePourGagner;
+
 };
 
 #endif // CHIFOUMIMODELE_H

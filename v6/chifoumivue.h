@@ -8,7 +8,7 @@
 #include <ctime>
 #include <QtWidgets>
 
-
+#include "dialogparametres.h"
 #include "chifoumipresentation.h"
 
 
@@ -43,16 +43,20 @@ public:
      */
 
     void desactiverBoutons();
-    /* BUT : si etat = finDePartie -> rendre les boutons inactifs
-     */
 
     void activerTableauScores();
     /* BUT : si etat = etatInitial et qu'on veut lancer une partie,
      *       alors on va mettre les labels en bleu
-     */    
+     */
+
+    void updaterTimerLabel(int);
+
+
 private:
     Ui::ChifoumiVue *ui;
 
     ChifoumiPresentation *_laPresentation;
+
+
 };
 #endif // CHIFOUMIVUE_H

@@ -8,6 +8,7 @@ DialogParametres::DialogParametres(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("Paramètres");
+    ui->slider->setTickInterval(5);
 
     ui->bConfirmer->setDisabled(true);
     connect(ui->inputPseudo,SIGNAL(textChanged(QString)),this,SLOT(gererBouton()));
