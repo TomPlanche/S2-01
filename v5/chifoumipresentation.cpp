@@ -122,7 +122,7 @@ void ChifoumiPresentation::aProposDe()
     msgBox->setIcon(QMessageBox::Information);
     msgBox->setStandardButtons(QMessageBox::Ok);
     msgBox->setWindowTitle("A propos de l'application");
-    msgBox->setText("Tom, Angel, Matis -> gros bgs \nVersion 3 du Chifoumi (24/05/2022) ");
+    msgBox->setText("Tom, Angel, Matis -> gros bgs \nVersion 5 du Chifoumi (1/06/2022) NADALLLLLLLLLLLLLLLLLL VAMOSSSS");
     msgBox->exec();
 }
 
@@ -157,7 +157,7 @@ void ChifoumiPresentation::pauseButtonClicked()
     switch (getEtat()) {
     case UnEtat::partieEnCours:
         setEtat(UnEtat::partieEnPause);
-        _laVue->desactiverBoutons();
+        _laVue->majInterface(UnEtat::partieEnPause);
         pauseTimer();
 
     break;
