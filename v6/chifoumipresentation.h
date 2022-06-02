@@ -20,9 +20,14 @@ public:
     ChifoumiVue *getVue();
     ChifoumiPresentation::UnEtat getEtat();
 
+    uint16_t getTemps();
+
     void setModele(ChifoumiModele *m);
     void setVue(ChifoumiVue *v);
     void setEtat(ChifoumiPresentation::UnEtat e);
+
+
+
 
 public slots:
     void lancerPartie();
@@ -40,6 +45,8 @@ public slots:
 
     void pauseButtonClicked();
 
+
+
 private:
     ChifoumiModele *_leModele;
     ChifoumiVue *_laVue;
@@ -51,7 +58,7 @@ private:
     const uint16_t TEMPS = _leModele->getTemps();
 
 
-    void finPartieTemps();
+    void finPartie();
 
 };
 

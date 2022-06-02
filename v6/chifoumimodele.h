@@ -9,6 +9,7 @@ class ChifoumiModele : public QObject
     Q_OBJECT
 public:
     enum UnCoup {pierre, papier, ciseau, rien};
+    enum UneFinDePartie {Temps, Score};
 
     explicit ChifoumiModele(UnCoup coupJoueur=rien,
                             UnCoup coupMachine=rien,
@@ -28,11 +29,13 @@ public:
     unsigned int getScoreJoueur();
     /* retourne le score du joueur */
 
-    unsigned int getScoreMachine();
+    uint16_t getScoreMachine();
     /* retourne le score de la machine */
 
     int getScorePourGagner();
     /* retourne le score nécessaire pour gagner */
+
+    UneFinDePartie getFinPartie();
 
     uint16_t getTemps();
 
@@ -57,6 +60,8 @@ public:
     void setScoreMachine(unsigned int p_score);
     /* initialise l'attribut coupMachine avec la valeur
     du paramètre p_score */
+
+    void setFinPartie(UneFinDePartie);
 
     // Autres modificateurs
     void majScores(char p_gagnant);
@@ -83,11 +88,13 @@ private:
     unsigned int _scoreJoueur;   // score actuel du joueur
     unsigned int _scoreMachine;  // score actuel de la Machine
 
-    ChifoumiModele::UnCoup _coupJoueur;          // dernier coup joué par le joueur
-    ChifoumiModele::UnCoup _coupMachine;         // dernier coup joué par la machine
+    UnCoup _coupJoueur;          // dernier coup joué par le joueur
+    UnCoup _coupMachine;         // dernier coup joué par la machine
+
+    UneFinDePartie _finPartie;
 
     uint16_t _temps;
-    int _scorePourGagner;
+    uint16_t _scorePourGagner;
 
 };
 

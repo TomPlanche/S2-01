@@ -10,6 +10,9 @@ ChifoumiVue::ChifoumiVue(ChifoumiPresentation *p,QWidget *parent)
 {
     ui->setupUi(this);
 
+
+    ui->pointsMax->setText(QString::number(_laPresentation->getModele()->getScorePourGagner()));
+
     //Préparation Boutons
     ui->gbBoutonsCoups->setDisabled(true);
     ui->boutonPause->setDisabled(true);
@@ -98,24 +101,8 @@ void ChifoumiVue::majInterface(ChifoumiPresentation::UnEtat e)
 
         desactiverBoutons();
         updaterTimerLabel(0);
-
-        QString gagnant;
-        int scoreMax;
-
-        scoreMax = _laPresentation->getModele()->getScorePourGagner();
-
-        if(_laPresentation->getModele()->determinerGagnant() == 'J'){
-            gagnant = "Le Joueur";
-        }
-        else{
-            gagnant = "La Machine";
-        }
-
-        QMessageBox *msgBox = new QMessageBox;
-        msgBox->setStandardButtons(QMessageBox::Ok);
-        msgBox->setWindowTitle("Fin de partie");
-        msgBox->setText(QString("Bravo ").append(QVariant(gagnant).toString()).append("! Vous gagnez en ").append(QVariant(scoreMax).toString()).append(" points."));
-        msgBox->exec();
+        break;
+    default:
         break;
     }
 }
@@ -145,7 +132,10 @@ void ChifoumiVue::desactiverBoutons()
         ui->bNewPartie->setText("Reprendre");
         ui->boutonPause->setDisabled(true);
         break;
-    case ChifoumiPresentation::finDePartie:break;
+    case ChifoumiPresentation::finDePartie:
+        ui->gbBoutonsCoups->setDisabled(true);
+        ui->boutonPause->setDisabled(true);
+        break;
     default:break;
    }
 }

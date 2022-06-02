@@ -3,7 +3,7 @@
 /* ********** CONSTRUCTEUR ********** */
 
 ChifoumiModele::ChifoumiModele(UnCoup coupJoueur,UnCoup coupMachine,QObject *parent):
-    QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine), _temps(5)
+    QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine), _temps(5), _scorePourGagner(-5464565)
 {
     initCoups();
     initScores();
@@ -23,7 +23,7 @@ unsigned int ChifoumiModele::getScoreJoueur() {
     return this->_scoreJoueur;
 }
 
-unsigned int ChifoumiModele::getScoreMachine() {
+uint16_t ChifoumiModele::getScoreMachine() {
     return this->_scoreMachine;
 }
 
@@ -36,6 +36,12 @@ uint16_t ChifoumiModele::getTemps()
 {
     return _temps;
 }
+
+
+ChifoumiModele::UneFinDePartie ChifoumiModele::getFinPartie() {
+    return _finPartie;
+}
+
 
 void ChifoumiModele::setTemps(uint16_t temps) {
     _temps = temps;
@@ -56,6 +62,11 @@ void ChifoumiModele::setScoreJoueur(unsigned int p_score) {
 
 void ChifoumiModele::setScoreMachine(unsigned int p_score) {
     this->_scoreMachine=p_score;
+}
+
+
+void  ChifoumiModele::setFinPartie(UneFinDePartie typeFinPartie) {
+    this->_finPartie = typeFinPartie;
 }
 
 void ChifoumiModele::majScores(char p_gagnant) {
@@ -80,7 +91,7 @@ void ChifoumiModele::initCoups() {
 bool ChifoumiModele::maxScore()
 {
     bool finPartie = false;
-    if(_scoreJoueur == 5 || _scoreMachine == 5){
+    if(_scoreJoueur == _scorePourGagner || _scoreMachine == _scorePourGagner){
         finPartie = true;
    }
     return finPartie;

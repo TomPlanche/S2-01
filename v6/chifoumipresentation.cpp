@@ -30,6 +30,10 @@ ChifoumiPresentation::UnEtat ChifoumiPresentation::getEtat()
     return _etat;
 }
 
+uint16_t ChifoumiPresentation::getTemps() {
+    return TEMPS;
+}
+
 
 /* ********** SETTERS ********** */
 
@@ -97,6 +101,8 @@ void ChifoumiPresentation::jouePierre()
     //Check si le score max est atteint
     if (_leModele->maxScore()){
         setEtat(ChifoumiPresentation::finDePartie);
+        _leModele->setFinPartie(ChifoumiModele::UneFinDePartie::Score);
+        finPartie();
     }
     //Maj de l'affichage
     _laVue->majInterface(_etat);
@@ -109,6 +115,8 @@ void ChifoumiPresentation::jouePapier()
     _leModele->majScores(_leModele->determinerGagnant());
     if (_leModele->maxScore()){
         setEtat(ChifoumiPresentation::finDePartie);
+        _leModele->setFinPartie(ChifoumiModele::UneFinDePartie::Score);
+        finPartie();
     }
     _laVue->majInterface(_etat);
 }
@@ -120,6 +128,8 @@ void ChifoumiPresentation::joueCiseau()
     _leModele->majScores(_leModele->determinerGagnant());
     if (_leModele->maxScore()){
         setEtat(ChifoumiPresentation::finDePartie);
+        _leModele->setFinPartie(ChifoumiModele::UneFinDePartie::Score);
+        finPartie();
     }
     _laVue->majInterface(_etat);
 }
@@ -185,8 +195,9 @@ void ChifoumiPresentation::updaterTimer()
     } else {
         timer->stop();
         setEtat(ChifoumiPresentation::finDePartie);
-        _laVue->majInterface(_etat);
-        finPartieTemps();
+        _leModele->setFinPartie(ChifoumiModele::UneFinDePartie::Temps);
+        _laVue->majInterface(getEtat());
+        finPartie();
     }
 }
 
@@ -214,35 +225,55 @@ void ChifoumiPresentation::pauseButtonClicked()
 
 
 
-void ChifoumiPresentation::finPartieTemps()
+void ChifoumiPresentation::finPartie()
 {
+
+    _laVue->majInterface(getEtat());
+    pauseTimer();
+
     QMessageBox *msgBox = new QMessageBox;
 
     msgBox->setIcon(QMessageBox::Information);
     msgBox->setStandardButtons(QMessageBox::Ok);
-    msgBox->setWindowTitle("Fin de partie !");
 
     uint16_t scoreJoueur = _leModele->getScoreJoueur();
     uint16_t scoreMachine = _leModele->getScoreMachine();
 
-    char gagnant;
 
-    if (scoreJoueur > scoreMachine) {
-        gagnant = 'J';
-    } else if (scoreJoueur < scoreMachine) {
-        gagnant = 'M';
-    } else {
-        gagnant = 'N';
+    char g;
+    QString gagnant;
+
+    switch (_leModele->getFinPartie()) {
+    case ChifoumiModele::UneFinDePartie::Score:
+
+        g = _leModele->determinerGagnant();
+        gagnant = g == 'J' ? "le joueur" : "la machine";
+
+
+        msgBox->setWindowTitle("Fin de partie gagnant !");
+        msgBox->setText(QString("Bravo ").append(gagnant).append(". Vous gagnez avec ").append(QString::number(_leModele->getScorePourGagner())).append(" point(s) en ").append(QString::number(getTemps() - _leModele->getTemps())).append(" secondes."));
+        break;
+    case ChifoumiModele::UneFinDePartie::Temps:
+
+        if (scoreJoueur > scoreMachine) {
+            g = 'J';
+        } else if (scoreJoueur < scoreMachine) {
+            g = 'M';
+        } else {
+            g = 'N';
+        }
+
+        if (g == 'J' || g == 'M') {
+            gagnant = g == 'J' ? "Vous terminez" : "La machine termine";
+            int score = g == 'J' ? _leModele->getScoreJoueur() : _leModele->getScoreMachine();
+            msgBox->setText(QString("Hélas chers joueurs, temps de jeu fini !\n").append(gagnant).append(" toutefois mieux, avec ").append(QVariant(score).toString()).append("."));
+
+        } else  {
+            msgBox->setText(QString("Hélas chers joueurs, temps de jeu fini ! C'est une égalité."));
+        }
+        break;
     }
 
-    if (gagnant == 'J' || gagnant == 'M') {
-        QString g = gagnant == 'J' ? "Vous terminez" : "La machine termine";
-        int score = gagnant == 'J' ? _leModele->getScoreJoueur() : _leModele->getScoreMachine();
-        msgBox->setText(QString("Hélas chers joueurs, temps de jeu fini !\n").append(g).append(" toutefois mieux, avec ").append(QVariant(score).toString()).append("."));
-
-    } else  {
-        msgBox->setText(QString("Hélas chers joueurs, temps de jeu fini ! C'est une égalité."));
-    }
 
     msgBox->exec();
 
