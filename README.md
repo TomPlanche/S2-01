@@ -73,7 +73,12 @@ Ce projet a été réalisé par :
         <tr>
             <td align="center">v7</td>
             <td align="left">v6+<br>
-            Le nom du joueur est enregistré dans une base de données.</td>
+            Dès son lancement, le programme demande à l’utilisateur de s’authentifier 
+			(utilisateur + mot de passe). L’application vérifie en base de données que cet 
+			utilisateur existe, et si c’est le cas, l’utilisateur a alors accès à l’interface du jeu 
+			codée en v6. On ne vous demande pas dans cette version de pouvoir insérer à partir 
+			de l’application un nouveau joueur qui ne serait pas répertorié dans la base de 
+			données</td>
             <td align="center"></td>
         </tr>
         <tr>
@@ -85,20 +90,15 @@ Ce projet a été réalisé par :
         </tr>
         <tr>
             <td align="center">v9</td>
-            <td align="left">Le menu <a color="blue">Fichier >> Réinitialiser...</a> permet de vider la base de données. Une boîte de message indique que l’action s’est bien terminée.</td>
+            <td align="left">Un nouveau menu est ajouté à l’interface <a color="blue">Fichier >> Résultats...</a> permettant à un 
+			utilisateur authentifié d’obtenir des informations sur les 10 meilleurs scores obtenus 
+			contre la machine par les joueurs qui ont fait des parties de chifoumi avec cette 
+			application particulière </td>
             <td align="center"></td>
         </tr>
         <tr>
             <td align="center">v10</td>
-            <td align="left">A partir du menu <a color="blue">Fichier >> Résultats...</a>, l’application ouvre une fenêtre de Dialogue dans laquelle elle affiche tous les résultats enregistrés, classés par ordre alphabétique croissant sur le nom du joueur :<br>
-            <strong>nomJoueurHumain1</strong> :<br>
-            - [Horodatage optionnel], scoreJoueurHumain, joueurMachine, scoreJoueurMachine<br>
-            - [Horodatage optionnel], scoreJoueurHumain, joueurMachine, scoreJoueurMachine<br>
-            -...<br>
-            <strong>nomJoueurHumain2</strong> :<br>
-            - [Horodatage optionnel], scoreJoueurHumain, joueurMachine, scoreJoueurMachine<br>
-            - [Horodatage optionnel], scoreJoueurHumain, joueurMachine, scoreJoueurMachine<br>
-            -...</td>
+            <td align="left">Ajout d’extensions jugées utiles par le groupe de projet.</td>
             <td align="center"></td>
         </tr>
     </tbody>
