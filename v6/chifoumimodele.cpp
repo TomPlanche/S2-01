@@ -3,7 +3,7 @@
 /* ********** CONSTRUCTEUR ********** */
 
 ChifoumiModele::ChifoumiModele(UnCoup coupJoueur,UnCoup coupMachine,QObject *parent):
-    QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine), _temps(5), _scorePourGagner(-5464565)
+    QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine), _temps(5), _scorePourGagner(5)
 {
     initCoups();
     initScores();
@@ -37,7 +37,6 @@ uint16_t ChifoumiModele::getTemps()
     return _temps;
 }
 
-
 ChifoumiModele::UneFinDePartie ChifoumiModele::getFinPartie() {
     return _finPartie;
 }
@@ -64,6 +63,10 @@ void ChifoumiModele::setScoreMachine(unsigned int p_score) {
     this->_scoreMachine=p_score;
 }
 
+void ChifoumiModele::setScorePourGagner(int score)
+{
+    _scorePourGagner=score;
+}
 
 void  ChifoumiModele::setFinPartie(UneFinDePartie typeFinPartie) {
     this->_finPartie = typeFinPartie;
@@ -185,8 +188,3 @@ ChifoumiModele::UnCoup ChifoumiModele::genererUnCoup() {
     }
     return valeurGeneree;
 }
-
-
-
-
-

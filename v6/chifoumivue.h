@@ -27,8 +27,10 @@ public:
 
     ChifoumiPresentation *getPresentation();
     void setPresentation(ChifoumiPresentation *p);
+
     void setPseudoJoueur(QString s);
     void setNbMaxPoints(int pts);
+    void setTempsMax(int temps);
 
     void majInterface(ChifoumiPresentation::UnEtat e);
     /* BUT : au début d'une partie ou à la fin d'une manche,

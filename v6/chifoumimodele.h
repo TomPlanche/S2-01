@@ -61,6 +61,8 @@ public:
     /* initialise l'attribut coupMachine avec la valeur
     du paramètre p_score */
 
+    void setScorePourGagner(int score);
+
     void setFinPartie(UneFinDePartie);
 
     // Autres modificateurs
