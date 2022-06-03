@@ -26,9 +26,6 @@ public:
     void setVue(ChifoumiVue *v);
     void setEtat(ChifoumiPresentation::UnEtat e);
 
-
-
-
 public slots:
     void lancerPartie();
 
@@ -42,21 +39,16 @@ public slots:
     void pauseTimer();
     void reprendreTimer();
 
-
     void pauseButtonClicked();
-
-
 
 private:
     ChifoumiModele *_leModele;
     ChifoumiVue *_laVue;
     UnEtat _etat;
 
-
     QTimer *timer;
     const uint16_t DELAIS = 1000;
     const uint16_t TEMPS = _leModele->getTemps();
-
 
     void finPartie();
 

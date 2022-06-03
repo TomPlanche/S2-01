@@ -8,7 +8,6 @@ DialogParametres::DialogParametres(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("Paramètres");
-    ui->slider->setTickInterval(5);
 
     ui->bConfirmer->setDisabled(true);
     connect(ui->inputPseudo,SIGNAL(textChanged(QString)),this,SLOT(gererBouton()));
@@ -36,6 +35,11 @@ QString DialogParametres::getPseudo()
 int DialogParametres::getNbPoints()
 {
     return ui->inputPtsMax->value();
+}
+
+int DialogParametres::getTemps()
+{
+    return ui->labelTempsMax->text().toInt();
 }
 
 void DialogParametres::gererBouton()
