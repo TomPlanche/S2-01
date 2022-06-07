@@ -20,8 +20,6 @@ public:
     ChifoumiVue *getVue();
     ChifoumiPresentation::UnEtat getEtat();
 
-    uint16_t getTemps();
-
     void setModele(ChifoumiModele *m);
     void setVue(ChifoumiVue *v);
     void setEtat(ChifoumiPresentation::UnEtat e);
@@ -48,7 +46,6 @@ private:
 
     QTimer *timer;
     const uint16_t DELAIS = 1000;
-    const uint16_t TEMPS = _leModele->getTemps();
 
     void finPartie();
 

@@ -30,10 +30,6 @@ ChifoumiPresentation::UnEtat ChifoumiPresentation::getEtat()
     return _etat;
 }
 
-uint16_t ChifoumiPresentation::getTemps() {
-    return TEMPS;
-}
-
 
 /* ********** SETTERS ********** */
 
@@ -63,12 +59,18 @@ void ChifoumiPresentation::lancerPartie() {
         _laVue->activerTableauScores();
 
         timer->start(DELAIS);
-        _laVue->updaterTimerLabel(TEMPS);
+        //qDebug() << getTemps();
+        _laVue->updaterTimerLabel(_leModele->getTempsConst());
+        _leModele->setTempsTimer(_leModele->getTempsConst());
+
 
         break;
     case ChifoumiPresentation::partieEnCours:
+        pauseTimer();
         _leModele->initCoups();
         _leModele->initScores();
+        setEtat(ChifoumiPresentation::etatInitial);
+        _laVue->majInterface(ChifoumiPresentation::etatInitial);
         break;
     case ChifoumiPresentation::partieEnPause:
         setEtat(ChifoumiPresentation::UnEtat::partieEnCours);
@@ -77,7 +79,7 @@ void ChifoumiPresentation::lancerPartie() {
         break;
     case ChifoumiPresentation::finDePartie:
         setEtat(ChifoumiPresentation::etatInitial);
-        _laVue->updaterTimerLabel(TEMPS);
+        _laVue->updaterTimerLabel(0);
     default:
         break;
     }
@@ -164,8 +166,12 @@ void ChifoumiPresentation::parametrer()
 
         // Modifier le nb max de points
         _laVue->setNbMaxPoints(mesParam->getNbPoints());
+        _leModele->setScorePourGagner(mesParam->getNbPoints());
+
         //Modifier le temps max
         _laVue->setTempsMax(mesParam->getTemps());
+        _leModele->setTempsTimer(mesParam->getTemps());
+        _leModele->setTempsConst(mesParam->getTemps());
         break;
     default:
         pauseTimer();
@@ -183,9 +189,9 @@ void ChifoumiPresentation::parametrer()
 
 void ChifoumiPresentation::updaterTimer()
 {
-    uint16_t temps = _leModele->getTemps();
+    uint16_t temps = _leModele->getTempsTimer();
     if (temps > 0) {
-        _leModele->setTemps(temps - 1);
+        _leModele->setTempsTimer(temps - 1);
         _laVue->updaterTimerLabel(temps);
     } else {
         timer->stop();
@@ -242,7 +248,7 @@ void ChifoumiPresentation::finPartie()
         gagnant = g == 'J' ? "le joueur" : "la machine";
 
         msgBox->setWindowTitle("Fin de partie gagnant !");
-        msgBox->setText(QString("Bravo ").append(gagnant).append(". Vous gagnez avec ").append(QString::number(_leModele->getScorePourGagner())).append(" point(s) en ").append(QString::number(getTemps() - _leModele->getTemps())).append(" secondes."));
+        msgBox->setText(QString("Bravo ").append(gagnant).append(". Vous gagnez avec ").append(QString::number(_leModele->getScorePourGagner())).append(" point(s) en ").append(QString::number(_leModele->getTempsConst() - _leModele->getTempsTimer())).append(" secondes."));
         break;
     case ChifoumiModele::UneFinDePartie::Temps:
 

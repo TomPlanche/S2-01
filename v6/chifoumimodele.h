@@ -37,9 +37,12 @@ public:
 
     UneFinDePartie getFinPartie();
 
-    uint16_t getTemps();
+    uint16_t getTempsTimer();
+    uint16_t getTempsConst();
 
-    void setTemps(uint16_t);
+
+    void setTempsTimer(uint16_t);
+    void setTempsConst(uint16_t);
 
     char determinerGagnant();
     /* détermine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
@@ -95,8 +98,10 @@ private:
 
     UneFinDePartie _finPartie;
 
-    uint16_t _temps;
-    uint16_t _scorePourGagner;
+    uint16_t TEMPS_OUI_OUI = 7;
+
+    uint16_t _temps = TEMPS_OUI_OUI;
+    uint16_t _scorePourGagner = 5;
 
 };
 

@@ -10,9 +10,11 @@ ChifoumiVue::ChifoumiVue(ChifoumiPresentation *p,QWidget *parent)
 {
     ui->setupUi(this);
 
+    qDebug() << _laPresentation->getModele()->getScorePourGagner();
     ui->pointsMax->setText(QString::number(_laPresentation->getModele()->getScorePourGagner()));
+    updaterTimerLabel(_laPresentation->getModele()->getTempsTimer());
 
-    //Préparation Boutons
+    //Préparation Bouton
     ui->gbBoutonsCoups->setDisabled(true);
     ui->boutonPause->setDisabled(true);
 
@@ -66,7 +68,7 @@ void ChifoumiVue::setNbMaxPoints(int pts)
 void ChifoumiVue::setTempsMax(int temps)
 {
     updaterTimerLabel(temps);
-    _laPresentation->getModele()->setTemps(temps);
+    _laPresentation->getModele()->setTempsTimer(temps);
 }
 
 /* ********** PROCEDURES ********** */
@@ -78,6 +80,7 @@ void ChifoumiVue::majInterface(ChifoumiPresentation::UnEtat e)
         ui->bNewPartie->setText("Jouer");
         _laPresentation->getModele()->initCoups();
         _laPresentation->getModele()->initScores();
+        desactiverBoutons();
         break;
     case ChifoumiPresentation::partieEnCours:
         //Maj des labels scoreJoueur et scoreMachine
@@ -135,7 +138,11 @@ void ChifoumiVue::activerBoutons()
 void ChifoumiVue::desactiverBoutons()
 {
     switch (_laPresentation->getEtat()) {
-    case ChifoumiPresentation::etatInitial:break;
+    case ChifoumiPresentation::etatInitial:
+        ui->gbBoutonsCoups->setDisabled(true);
+        ui->boutonPause->setDisabled(true);
+        break;
+
     case ChifoumiPresentation::partieEnCours:break;
     case ChifoumiPresentation::partieEnPause:
         ui->gbBoutonsCoups->setDisabled(true);
