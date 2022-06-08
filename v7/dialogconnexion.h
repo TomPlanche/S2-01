@@ -52,6 +52,8 @@ public slots:
 private:
     Ui::DialogConnexion *ui; // Interface graphique de la boite de dialogue de connexion
     Database *db; // Base de données
+
+    bool estConnecte; // Indique si l'utilisateur est connecté
 };
 
 #endif // DIALOGCONNEXION_H
