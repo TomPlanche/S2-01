@@ -1,16 +1,20 @@
+/**\
+  * @file chifoumimodele.cpp
+  * @author Tom Planche, Angel Garcia, Matis Chabanat
+  * @brief Présentation du jeu Chifoumi
+  * @date 08-06-2022
+  *
+  * @copyright Copyright (c) 2022
+  *
+\**/
 #include "chifoumimodele.h"
 
-/* ********** CONSTRUCTEUR ********** */
-
-ChifoumiModele::ChifoumiModele(UnCoup coupJoueur,UnCoup coupMachine,QObject *parent):
-    QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine)
-{
+ChifoumiModele::ChifoumiModele(UnCoup coupJoueur, UnCoup coupMachine, QObject *parent) : QObject{parent}, _coupJoueur(coupJoueur), _coupMachine(coupMachine) {
     initCoups();
     initScores();
 }
 
-
-// GETTERS
+//.  ------------------------------- GETTERS -----------------------------------
 ChifoumiModele::UnCoup ChifoumiModele::getCoupJoueur() {
     return this->_coupJoueur;
 }
@@ -23,17 +27,15 @@ unsigned int ChifoumiModele::getScoreJoueur() {
     return this->_scoreJoueur;
 }
 
-uint16_t ChifoumiModele::getScoreMachine() {
+unsigned short int ChifoumiModele::getScoreMachine() {
     return this->_scoreMachine;
 }
 
-int ChifoumiModele::getScorePourGagner()
-{
+int ChifoumiModele::getScorePourGagner() {
     return this->_scorePourGagner;
 }
 
-uint16_t ChifoumiModele::getTempsTimer()
-{
+unsigned short int ChifoumiModele::getTempsTimer() {
     return _temps;
 }
 
@@ -41,72 +43,67 @@ ChifoumiModele::UneFinDePartie ChifoumiModele::getFinPartie() {
     return _finPartie;
 }
 
-uint16_t ChifoumiModele::getTempsConst()
-{
+unsigned short int ChifoumiModele::getTempsConst() {
     return TEMPS_OUI_OUI;
 }
 
-
-void ChifoumiModele::setTempsTimer(uint16_t temps) {
+//.  ------------------------------- SETTERS -----------------------------------
+void ChifoumiModele::setTempsTimer(unsigned short int temps) {
     _temps = temps;
 }
 
-void ChifoumiModele::setTempsConst(uint16_t temps)
-{
+void ChifoumiModele::setTempsConst(unsigned short int temps) {
     TEMPS_OUI_OUI = temps;
 }
 
-/// Setters
 void ChifoumiModele::setCoupJoueur(ChifoumiModele::UnCoup p_coup) {
-    this->_coupJoueur=p_coup;
+    this->_coupJoueur = p_coup;
 }
 
 void ChifoumiModele::setCoupMachine(ChifoumiModele::UnCoup p_coup) {
-    this->_coupMachine=p_coup;
+    this->_coupMachine = p_coup;
 }
 
 void ChifoumiModele::setScoreJoueur(unsigned int p_score) {
-    this->_scoreJoueur=p_score;
+    this->_scoreJoueur = p_score;
 }
 
 void ChifoumiModele::setScoreMachine(unsigned int p_score) {
-    this->_scoreMachine=p_score;
+    this->_scoreMachine = p_score;
 }
 
-void ChifoumiModele::setScorePourGagner(int score)
-{
-    _scorePourGagner=score;
+void ChifoumiModele::setScorePourGagner(int score) {
+    _scorePourGagner = score;
 }
 
-void  ChifoumiModele::setFinPartie(UneFinDePartie typeFinPartie) {
+void ChifoumiModele::setFinPartie(UneFinDePartie typeFinPartie) {
     this->_finPartie = typeFinPartie;
 }
 
+//.  ----------------------------- PROCÉDURES ----------------------------------
 void ChifoumiModele::majScores(char p_gagnant) {
-    if(p_gagnant=='J'){
+    if (p_gagnant == 'J') {
         this->_scoreJoueur++;
-    }
-    else if (p_gagnant=='M'){
+    } else if (p_gagnant == 'M') {
         this->_scoreMachine++;
     }
 }
 
 void ChifoumiModele::initScores() {
-    this->_scoreJoueur=0;
-    this->_scoreMachine=0;
+    this->_scoreJoueur = 0;
+    this->_scoreMachine = 0;
 }
 
 void ChifoumiModele::initCoups() {
-    this->_coupJoueur=ChifoumiModele::rien;
-    this->_coupMachine=ChifoumiModele::rien;
+    this->_coupJoueur = ChifoumiModele::rien;
+    this->_coupMachine = ChifoumiModele::rien;
 }
 
-bool ChifoumiModele::maxScore()
-{
+bool ChifoumiModele::maxScore() {
     bool finPartie = false;
-    if(_scoreJoueur == _scorePourGagner || _scoreMachine == _scorePourGagner){
+    if (_scoreJoueur == _scorePourGagner || _scoreMachine == _scorePourGagner) {
         finPartie = true;
-   }
+    }
     return finPartie;
 }
 
@@ -175,10 +172,8 @@ char ChifoumiModele::determinerGagnant() {
     return gagnantARetourner;
 }
 
-int randMinMax(int min, int max){
-    /* pré-condition : min<max ;
-       Le nbre aléatoire est compris entre [min, max[ */
-   return rand()%(max-min) + min;
+int randMinMax(int min, int max) {
+    return rand() % (max - min) + min;
 }
 
 ChifoumiModele::UnCoup ChifoumiModele::genererUnCoup() {

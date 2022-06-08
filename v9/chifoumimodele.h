@@ -79,9 +79,9 @@ public:
     /**\
      * @brief Retourne le score de la machine
      *
-     * @return uint16_t Score de la machine
+     * @return unsigned short int Score de la machine
     \**/
-    uint16_t getScoreMachine();
+    unsigned short int getScoreMachine();
 
     /**\
      * @brief Retourne le score nécessaire pour gagner
@@ -100,16 +100,16 @@ public:
     /**\
      * @brief Retourne le temps du timer
      *
-     * @return uint16_t Temps du timer
+     * @return unsigned short int Temps du timer
     \**/
-    uint16_t getTempsTimer();
+    unsigned short int getTempsTimer();
 
     /**\
      * @brief Retourne le temps de la partie
      *
-     * @return uint16_t Temps de la partie
+     * @return unsigned short int Temps de la partie
     \**/
-    uint16_t getTempsConst();
+    unsigned short int getTempsConst();
 
 
     //.  =======================================================================
@@ -120,14 +120,14 @@ public:
      *
      * @param temps temps à définir
     \**/
-    void setTempsTimer(uint16_t);
+    void setTempsTimer(unsigned short int);
 
     /**\
      * @brief Définit la constante du temps.
      *
      * @param temps temps à définir
     \**/
-    void setTempsConst(uint16_t);
+    void setTempsConst(unsigned short int);
 
     /**\
      * @brief Définit le coup joué par le joueur
@@ -224,10 +224,10 @@ public:
 
     UneFinDePartie _finPartie;
 
-    uint16_t TEMPS_OUI_OUI = 7;
+    unsigned short int TEMPS_OUI_OUI = 7;
 
-    uint16_t _temps = TEMPS_OUI_OUI;
-    uint16_t _scorePourGagner = 5;
+    unsigned short int _temps = TEMPS_OUI_OUI;
+    unsigned short int _scorePourGagner = 5;
 };
 
 #endif  // CHIFOUMIMODELE_H

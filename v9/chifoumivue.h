@@ -6,7 +6,8 @@
   *
   * @copyright Copyright (c) 2022
   *
-\**/#ifndef CHIFOUMIVUE_H
+\**/
+#ifndef CHIFOUMIVUE_H
 #define CHIFOUMIVUE_H
 
 #include <QMainWindow>
