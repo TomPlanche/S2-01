@@ -1,7 +1,8 @@
 #include "chifoumimodele.h"
 
-/* ********** CONSTRUCTEUR ********** */
-
+//.  ===========================================================================
+//.                               CONSTRUCTEUR                                  
+//.  ===========================================================================
 ChifoumiModele::ChifoumiModele(UnCoup coupJoueur,UnCoup coupMachine,QObject *parent):
     QObject{parent},_coupJoueur(coupJoueur),_coupMachine(coupMachine)
 {
@@ -9,8 +10,9 @@ ChifoumiModele::ChifoumiModele(UnCoup coupJoueur,UnCoup coupMachine,QObject *par
     initScores();
 }
 
-
-// GETTERS
+//.  ===========================================================================
+//.                                  GETTERS                                    
+//.  ===========================================================================
 ChifoumiModele::UnCoup ChifoumiModele::getCoupJoueur() {
     return this->_coupJoueur;
 }
@@ -27,19 +29,25 @@ uint16_t ChifoumiModele::getScoreMachine() {
     return this->_scoreMachine;
 }
 
+
 int ChifoumiModele::getScorePourGagner()
 {
     return this->_scorePourGagner;
 }
+
+
 
 uint16_t ChifoumiModele::getTempsTimer()
 {
     return _temps;
 }
 
+
 ChifoumiModele::UneFinDePartie ChifoumiModele::getFinPartie() {
     return _finPartie;
 }
+
+
 
 uint16_t ChifoumiModele::getTempsConst()
 {
@@ -47,6 +55,9 @@ uint16_t ChifoumiModele::getTempsConst()
 }
 
 
+//.  ===========================================================================
+//.                                  SETTERS                                    
+//.  ===========================================================================
 void ChifoumiModele::setTempsTimer(uint16_t temps) {
     _temps = temps;
 }
@@ -56,32 +67,40 @@ void ChifoumiModele::setTempsConst(uint16_t temps)
     TEMPS_OUI_OUI = temps;
 }
 
-/// Setters
+
 void ChifoumiModele::setCoupJoueur(ChifoumiModele::UnCoup p_coup) {
     this->_coupJoueur=p_coup;
 }
+
 
 void ChifoumiModele::setCoupMachine(ChifoumiModele::UnCoup p_coup) {
     this->_coupMachine=p_coup;
 }
 
+
 void ChifoumiModele::setScoreJoueur(unsigned int p_score) {
     this->_scoreJoueur=p_score;
 }
 
+
 void ChifoumiModele::setScoreMachine(unsigned int p_score) {
     this->_scoreMachine=p_score;
 }
+
 
 void ChifoumiModele::setScorePourGagner(int score)
 {
     _scorePourGagner=score;
 }
 
+
 void  ChifoumiModele::setFinPartie(UneFinDePartie typeFinPartie) {
     this->_finPartie = typeFinPartie;
 }
 
+//.  ===========================================================================
+//.                                 MÉTHODES                                    
+//.  ===========================================================================
 void ChifoumiModele::majScores(char p_gagnant) {
     if(p_gagnant=='J'){
         this->_scoreJoueur++;
@@ -91,15 +110,18 @@ void ChifoumiModele::majScores(char p_gagnant) {
     }
 }
 
+
 void ChifoumiModele::initScores() {
     this->_scoreJoueur=0;
     this->_scoreMachine=0;
 }
 
+
 void ChifoumiModele::initCoups() {
     this->_coupJoueur=ChifoumiModele::rien;
     this->_coupMachine=ChifoumiModele::rien;
 }
+
 
 bool ChifoumiModele::maxScore()
 {
@@ -109,6 +131,7 @@ bool ChifoumiModele::maxScore()
    }
     return finPartie;
 }
+
 
 char ChifoumiModele::determinerGagnant() {
     char gagnantARetourner;
@@ -175,11 +198,19 @@ char ChifoumiModele::determinerGagnant() {
     return gagnantARetourner;
 }
 
+/**\
+  * @brief Retourne un nombre aléatoire entre min et max
+  * 
+  * @param min Nouvelle valeur minimale
+  * @param max Nouvelle valeur maximale
+  * @return int Nombe aléatoire
+\**/
 int randMinMax(int min, int max){
     /* pré-condition : min<max ;
        Le nbre aléatoire est compris entre [min, max[ */
    return rand()%(max-min) + min;
 }
+
 
 ChifoumiModele::UnCoup ChifoumiModele::genererUnCoup() {
     ChifoumiModele::UnCoup valeurGeneree;  // valeur � retourner
