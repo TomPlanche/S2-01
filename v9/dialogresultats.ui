@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogResultats</class>
+ <widget class="QDialog" name="DialogResultats">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>626</width>
+    <height>399</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>626</width>
+    <height>399</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="titre">
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Top 10 résultats</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="tableau">
+       <column>
+        <property name="text">
+         <string>Horodatage</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Pseudo Joueur</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Score Joueur</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Pseudo Machine</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Score Joueur</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="bQuitter">
+       <property name="text">
+        <string>Quitter</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
