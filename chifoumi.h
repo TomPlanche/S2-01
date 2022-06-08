@@ -1,24 +1,43 @@
 #ifndef CHIFOUMI_H
 #define CHIFOUMI_H
+
+#include <QMainWindow>
 #include <iostream>
 #include <conio.h>
 #include <cstdlib>
 #include <ctime>
- 
-using namespace std;
+#include <QtWidgets>
 
-class Chifoumi {
+QT_BEGIN_NAMESPACE
+namespace Ui { class Chifoumi; }
+QT_END_NAMESPACE
+
+class Chifoumi : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    Chifoumi(QWidget *parent = nullptr);
+    ~Chifoumi();
+    void majAffichage();
+
+public slots:
+    void lancerPartie();
+    void jouePierre();
+    void jouePapier();
+    void joueCiseau();
+
+private:
+    Ui::Chifoumi *ui;
+
     ///* ---- PARTIE MOD�LE ---------------------------
 
-    ///* Une d�finition de type �num�r�
-    public:
-        enum UnCoup {pierre, papier, ciseau, rien };
+        ///* Une d�finition de type �num�r�
+        public:
+            enum UnCoup {pierre, papier, ciseau, rien };
 
-        ///* M�thodes du Mod�le
+            ///* M�thodes du Mod�le
     public:
-        Chifoumi();
-        virtual ~Chifoumi();
-
         // Getters
         UnCoup getCoupJoueur();
         /* retourne le dernier coup jou� par le joueur */
@@ -73,5 +92,4 @@ class Chifoumi {
         UnCoup coupJoueur;          // dernier coup jou� par le joueur
         UnCoup coupMachine;         // dernier coup jou� par la machine
 };
-
-#endif  // CHIFOUMI_H
+#endif // CHIFOUMI_H
