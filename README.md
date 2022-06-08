@@ -104,6 +104,3 @@ Ce projet a été réalisé par :
     </tbody>
 </table>
 
-## Captures d'écran du jeu
-
-(à faire)
