@@ -20,6 +20,11 @@ bool DialogConnexion::getEstConnecte()
     return estConnecte;
 }
 
+Database *DialogConnexion::getDatabase()
+{
+    return db;
+}
+
 void DialogConnexion::demandeConnexion()
 {
     QString user = ui->inputId->text();
@@ -27,7 +32,7 @@ void DialogConnexion::demandeConnexion()
 
     bool trouve = false;
 
-    db->openDataBase();
+    //db->openDataBase();
 
     QSqlQuery maRqt;
     maRqt.exec("SELECT identification.login,identification.passwd FROM identification;");
@@ -51,5 +56,5 @@ void DialogConnexion::demandeConnexion()
         QMessageBox::information(this, "Connexion", "Connexion erronée");
     }
 
-    db->closeDataBase();
+    //db->closeDataBase();
 }

@@ -40,6 +40,8 @@ public:
     \**/
     ~DialogConnexion();
 
+    bool getEstConnecte();
+
 public slots:
     /**\
       * @brief Demande la connexion de l'utilisateur
