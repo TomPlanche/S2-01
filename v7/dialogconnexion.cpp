@@ -15,6 +15,11 @@ DialogConnexion::~DialogConnexion()
     delete ui;
 }
 
+bool DialogConnexion::getEstConnecte()
+{
+    return estConnecte;
+}
+
 void DialogConnexion::demandeConnexion()
 {
     QString user = ui->inputId->text();
@@ -37,10 +42,14 @@ void DialogConnexion::demandeConnexion()
 
     if (trouve)
     {
+        estConnecte = true;
         QMessageBox::information(this, "Connexion", "Connexion réussie");
+        this->close();
     }
     else
     {
         QMessageBox::information(this, "Connexion", "Connexion erronée");
     }
+
+    db->closeDataBase();
 }

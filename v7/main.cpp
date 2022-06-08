@@ -18,10 +18,10 @@ int main(int argc, char *argv[])
 
     conn->exec();
 
-    //conn-> hide();
-    //conn->exec();
-    //conn-> show();
-
-    w.show();
-    return a.exec();
+    if(conn->getEstConnecte())
+    {
+        w.show();
+        return a.exec();
+    }
+    return 0;
 }

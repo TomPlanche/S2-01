@@ -18,12 +18,16 @@ public:
     explicit DialogConnexion(QWidget *parent = nullptr);
     ~DialogConnexion();
 
+    bool getEstConnecte();
+
 public slots:
     void demandeConnexion();
 
 private:
     Ui::DialogConnexion *ui;
     Database *db;
+
+    bool estConnecte = false;
 };
 
 #endif // DIALOGCONNEXION_H
