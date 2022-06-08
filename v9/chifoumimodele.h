@@ -1,100 +1,226 @@
+/**\
+  * @file chifoumimodele.h
+  * @author Tom Planche, Angel Garcia, Matis Chabanat
+  * @brief Modèle du jeu Chifoumi
+  * @date 08-06-2022
+  *
+  * @copyright Copyright (c) 2022
+  *
+\**/
+
 #ifndef CHIFOUMIMODELE_H
 #define CHIFOUMIMODELE_H
 
 #include <QObject>
 
-
+/**\
+  * @brief Notre modèle du jeu Chifoumi
+  *
+\**/
 class ChifoumiModele : public QObject
 {
     Q_OBJECT
 public:
+    /**\
+      * @brief Coups possibles
+      *
+    \**/
     enum UnCoup {pierre, papier, ciseau, rien};
+
+    /**\
+      * @brief Fin de parties possibles
+      *
+    \**/
     enum UneFinDePartie {Temps, Score};
 
+    /**\
+      * @brief Constructeur
+      *
+      * @param coupJoueur Coup joué par le joueur
+      * @param coupMachine Coup joué par la machine
+      * @param parent Fenêtre parent
+    \**/
     explicit ChifoumiModele(UnCoup coupJoueur=rien,
                             UnCoup coupMachine=rien,
                             QObject *parent = nullptr);
 
+    /**\
+     * @brief Génère un coup aléatoire
+     *
+     * @return ChifoumiModele::UnCoup Coup aléatoire
+    \**/
     ChifoumiModele::UnCoup genererUnCoup();
-    /* retourne une valeur aléatoire = pierre, papier ou ciseau.
-    Utilisée pour faire jouer la machine */
 
-    // Getters
+    //.  =======================================================================
+    //.                                GETTERS
+    //.  =======================================================================
+
+    /**\
+     * @brief Retourne le dernier coup joué par le joueur
+     *
+     * @return ChifoumiModele::UnCoup Dernier coup joué par le joueur
+    \**/
     UnCoup getCoupJoueur();
-    /* retourne le dernier coup joué par le joueur */
 
+    /**\
+     * @brief Retourne le dernier coup joué par la machine
+     *
+     * @return ChifoumiModele::UnCoup Dernier coup joué par la machine
+    \**/
     UnCoup getCoupMachine();
-    /* retourne le dernier coup joué par le joueur */
 
+    /**\
+     * @brief Retourne le score du joueur
+     *
+     * @return unsigned int Score du joueur
+    \**/
     unsigned int getScoreJoueur();
-    /* retourne le score du joueur */
 
+    /**\
+     * @brief Retourne le score de la machine
+     *
+     * @return uint16_t Score de la machine
+    \**/
     uint16_t getScoreMachine();
-    /* retourne le score de la machine */
 
+    /**\
+     * @brief Retourne le score nécessaire pour gagner
+     *
+     * @return int Score nécessaire pour gagner
+    \**/
     int getScorePourGagner();
-    /* retourne le score nécessaire pour gagner */
 
+    /**\
+     * @brief Retourne le type de la fin de partie
+     *
+     * @return ChifoumiModele::UneFinDePartie Type de fin de partie
+    \**/
     UneFinDePartie getFinPartie();
 
+    /**\
+     * @brief Retourne le temps du timer
+     *
+     * @return uint16_t Temps du timer
+    \**/
     uint16_t getTempsTimer();
+
+    /**\
+     * @brief Retourne le temps de la partie
+     *
+     * @return uint16_t Temps de la partie
+    \**/
     uint16_t getTempsConst();
 
 
+    //.  =======================================================================
+    //.                                SETTERS
+    //.  =======================================================================
+    /**\
+     * @brief Définit le temps du timer
+     *
+     * @param temps temps à définir
+    \**/
     void setTempsTimer(uint16_t);
+
+    /**\
+     * @brief Définit la constante du temps.
+     *
+     * @param temps temps à définir
+    \**/
     void setTempsConst(uint16_t);
 
-    char determinerGagnant();
-    /* détermine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
-    en fonction du dernier coup joué par chacun d'eux */
-
+    /**\
+     * @brief Définit le coup joué par le joueur
+     *
+     * @param p_coup Coup à définir
+    \**/
     void setCoupJoueur(ChifoumiModele::UnCoup p_coup);
-    /* initialise l'attribut coupJoueur avec la valeur
-    du paramètre p_coup */
 
+    /**\
+     * @brief Définit le coup joué par la machine
+     *
+     * @param p_coup Coup à définir
+    \**/
     void setCoupMachine(ChifoumiModele::UnCoup p_coup);
-    /* initialise l'attribut coupmachine avec la valeur
-    du paramètre p_coup */
 
+    /**\
+     * @brief Définit le score du joueur
+     *
+     * @param p_score Score à définir
+    \**/
     void setScoreJoueur(unsigned int p_score);
-    /* initialise l'attribut scoreJoueur avec la valeur
-    du paramètre p_score */
 
+    /**\
+     * @brief Définit le score de la machine
+     *
+     * @param p_score Score à définir
+    \**/
     void setScoreMachine(unsigned int p_score);
-    /* initialise l'attribut coupMachine avec la valeur
-    du paramètre p_score */
 
+    /**\
+     * @brief Définit le score nécessaire pour gagner
+     *
+     * @param score Score à définir
+    \**/
     void setScorePourGagner(int score);
 
+    /**\
+     * @brief Définit le type de la fin de partie
+     *
+     * @param typeFinPartie Type de fin de partie à définir
+    \**/
     void setFinPartie(UneFinDePartie);
 
-    // Autres modificateurs
+
+    //.  =======================================================================
+    //.                               METHODES
+    //.  =======================================================================
+    /**\
+     * @brief Met a jour le score du gagant
+     * 0 si match nul
+     *
+     * @param p_gagnant Gagnant du point
+    \**/
     void majScores(char p_gagnant);
-    /* Mise à jour des scores en fonction des règles de gestion actuelles :
-            - 1 point pour le gagnant lorsqu'il y a un gagnant
-            - 0 point en cas de match nul
-    */
+
+    /**\
+     * @brief Initialise les scores
+     *
+    \**/
     void initScores();
-    /* initialise à 0 les attributs scoreJoueur et scoreMachine
-    NON indispensable */
 
+    /**\
+     * @brief Initialise les coups
+     *
+    \**/
     void initCoups();
-    /* initialise à rien les attributs coupJoueur et coupMachine
-    NON indispensable */
 
+    /**\
+     * @brief Vérifie si un joueur a gagné la partie
+     *
+     * @return true Un joueur a gagné la partie
+     * @return false Aucun joueur n'a atteint le score nécessaire pour gagner
+    \**/
     bool maxScore();
-    /* Regarde si le score max a ete atteint, affiche une boite de dialogue
-    et desactive les boutons de jeu */
+
+    /**\
+     * @brief Determine le gagnant de la partie
+     *
+     * @return char 'J' si le joueur a gagné sinon 'M'
+    \**/
+    char determinerGagnant();
 
 
 
-private:
-
+    //.  =======================================================================
+    //.                                 PRIVE
+    //.  =======================================================================
+   private:
     unsigned int _scoreJoueur;   // score actuel du joueur
     unsigned int _scoreMachine;  // score actuel de la Machine
 
-    UnCoup _coupJoueur;          // dernier coup joué par le joueur
-    UnCoup _coupMachine;         // dernier coup joué par la machine
+    UnCoup _coupJoueur;   // dernier coup joué par le joueur
+    UnCoup _coupMachine;  // dernier coup joué par la machine
 
     UneFinDePartie _finPartie;
 
@@ -102,7 +228,6 @@ private:
 
     uint16_t _temps = TEMPS_OUI_OUI;
     uint16_t _scorePourGagner = 5;
-
 };
 
-#endif // CHIFOUMIMODELE_H
+#endif  // CHIFOUMIMODELE_H
