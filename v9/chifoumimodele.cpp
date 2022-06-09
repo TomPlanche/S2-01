@@ -80,7 +80,7 @@ void ChifoumiModele::setFinPartie(UneFinDePartie typeFinPartie) {
     this->_finPartie = typeFinPartie;
 }
 
-//.  ----------------------------- PROCÉDURES ----------------------------------
+//.  ----------------------- PROCÉDURES/FONCTIONS ------------------------
 void ChifoumiModele::majScores(char p_gagnant) {
     if (p_gagnant == 'J') {
         this->_scoreJoueur++;

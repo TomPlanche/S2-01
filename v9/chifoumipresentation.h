@@ -34,9 +34,10 @@ class ChifoumiPresentation : public QObject {
       * @brief Constructeur de la présentation
       *
       * @param m Modèle du jeu
+      * @param db Base de données du jeu
       * @param parent Parent de la présentation
     \**/
-    explicit ChifoumiPresentation(ChifoumiModele *m, QObject *parent = nullptr);
+    explicit ChifoumiPresentation(ChifoumiModele *m,Database *db, QObject *parent = nullptr);
 
     /**\
       * @brief Types d'états de la partie
