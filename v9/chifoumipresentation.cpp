@@ -127,7 +127,7 @@ void ChifoumiPresentation::aProposDe() {
     msgBox->setIcon(QMessageBox::Information);
     msgBox->setStandardButtons(QMessageBox::Ok);
     msgBox->setWindowTitle("A propos de l'application");
-    msgBox->setText("Tom, Angel, Matis -> gros bgs \nVersion 3 du Chifoumi (24/05/2022) ");
+    msgBox->setText("Tom, Angel, Matis -> gros bgs \nVersion 9 du Chifoumi (08/06/2022) ");
     msgBox->exec();
 }
 
